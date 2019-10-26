@@ -40,7 +40,7 @@ public class Message : MonoBehaviour
         sleuthNodeCurrent = sleuthNodeRoot;
     }
 
-    public void pushSleuthNode(string currentText, Obfuscator obf)
+    public string pushSleuthNode(string currentText, Obfuscator obf)
     {
         sleuthNodeCurrent.saveText(currentText);
         SleuthNode sleuth = sleuthNodeCurrent.addChild(obf);
@@ -48,6 +48,8 @@ public class Message : MonoBehaviour
         {
             sleuthNodes.Add(sleuth);
         }
+        sleuthNodeCurrent = sleuth;
+        return sleuthNodeCurrent.currentState;
     }
 
     public string popSleuthNode(string currentText)

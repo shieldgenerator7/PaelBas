@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public string input = "";
-    public bool obfuscate = true;
-    public List<string> output = new List<string>();
+    [TextArea]
+    public string currentText;
 
-    private string prevInput = "";
+    public Obfuscator nextFilter;
+    public bool pop;
 
-    public List<Obfuscator> obfuscators;
-
+    private Message message;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,23 +23,22 @@ public class PlayerController : MonoBehaviour
         //        + " ==" + (result[i] == "")
         //        );
         //}
-
+        message = GetComponent<Message>();
+        currentText = message.Untext;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (input != prevInput)
+        if (nextFilter != null)
         {
-            prevInput = input;
-            string text = input;
-            foreach (Obfuscator obf in obfuscators)
-            {
-                text = (obfuscate)
-                    ? obf.obfuscate(text)
-                    : obf.unobfuscate(text);
-            }
-            output.Add(text);
+            currentText = message.pushSleuthNode(currentText, nextFilter);
+            nextFilter = null;
+        }
+        if (pop)
+        {
+            currentText = message.popSleuthNode(currentText);
+            pop = false;
         }
     }
 }
