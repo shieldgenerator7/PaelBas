@@ -5,6 +5,7 @@ using UnityEngine;
 public class Message : MonoBehaviour
 {
     [SerializeField]
+    [TextArea]
     private string text;
     public string Text
     {
@@ -13,6 +14,7 @@ public class Message : MonoBehaviour
     }
 
     [SerializeField]
+    [TextArea]
     private string untext;
     public string Untext
     {

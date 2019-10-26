@@ -193,7 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8c8779b613eff4dadf70bba3ce6788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentText: 
+  currentText: "Blue Berry Pie Recipe\r\nblue berries\r\npie crust\r\nflour\r\ncane
+    sugar\r\ngranulated sugar\r\nbutter\r\nsalt\r\nblue berry jam"
   nextFilter: {fileID: 0}
   pop: 0
 --- !u!4 &623562337
@@ -222,7 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a273ebba6d6604dac82b373dfb0f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: On this day, twenty years ago, we established a colony.
+  text: "Blue Berry Pie Recipe\r\nblue berries\r\npie crust\r\nflour\r\ncane sugar\r\ngranulated
+    sugar\r\nbutter\r\nsalt\r\nblue berry jam"
   untext: 
   obfuscators:
   - {fileID: 654488236}

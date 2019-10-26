@@ -7,12 +7,14 @@ public abstract class Obfuscator : MonoBehaviour
     public static List<char> segmentDelimiters = new List<char>()
     {
         '.',
-        '\n'
+        '\n',
+        '\r'
     };
     public static List<char> wordDelimiters = new List<char>()
     {
         '.',
         '\n',
+        '\r',
         ',',
         ' '
     };
