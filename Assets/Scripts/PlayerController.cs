@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,7 +11,34 @@ public class PlayerController : MonoBehaviour
     public Obfuscator nextFilter;
     public bool pop;
 
-    private Message message;
+    [SerializeField]
+    private int messageIndex = 0;
+    [SerializeField]
+    private List<Message> messages;
+
+    public int MessageIndex
+    {
+        get => messageIndex;
+        set
+        {
+            messageIndex = Mathf.Min(
+                messages.Count - 1,
+                Mathf.Max(
+                    0,
+                    value
+                    )
+                );
+            txtMessage.text = messages[messageIndex].CurrentText;
+        }
+    }
+
+    public Message CurrentMessage
+    {
+        get => messages[MessageIndex];
+        set => MessageIndex = messages.IndexOf(value);
+    }
+
+    public TMP_InputField txtMessage;
     
     // Start is called before the first frame update
     void Start()
@@ -23,8 +51,9 @@ public class PlayerController : MonoBehaviour
         //        + " ==" + (result[i] == "")
         //        );
         //}
-        message = GetComponent<Message>();
-        currentText = message.Untext;
+        currentText = messages[messageIndex].Untext;
+        MessageIndex = 0;
+        txtMessage.ActivateInputField();
     }
 
     // Update is called once per frame
@@ -32,13 +61,20 @@ public class PlayerController : MonoBehaviour
     {
         if (nextFilter != null)
         {
-            currentText = message.pushSleuthNode(currentText, nextFilter);
+            currentText = CurrentMessage.pushSleuthNode(currentText, nextFilter);
             nextFilter = null;
         }
         if (pop)
         {
-            currentText = message.popSleuthNode(currentText);
+            currentText = CurrentMessage.popSleuthNode(currentText);
             pop = false;
         }
     }
+
+    public void adjustMessageIndex(int addend)
+    {
+        MessageIndex += addend;
+    }
+
+
 }

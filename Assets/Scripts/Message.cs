@@ -21,6 +21,14 @@ public class Message : MonoBehaviour
         get => untext;
         private set => untext = value;
     }
+
+    public string CurrentText
+    {
+        get
+        {
+            return sleuthNodeCurrent.currentState;
+        }
+    }
     
     public List<Obfuscator> obfuscators;
 
