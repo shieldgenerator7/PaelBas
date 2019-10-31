@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
                     )
                 );
             Text = messages[messageIndex].CurrentText;
+            messageSwitched?.Invoke(CurrentMessage);
         }
     }
 
@@ -48,7 +49,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public TMP_InputField txtMessage;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,12 +71,12 @@ public class PlayerController : MonoBehaviour
     {
         if (nextFilter != null)
         {
-            Text = CurrentMessage.pushSleuthNode(Text, nextFilter);
+            pushObfuscator(nextFilter);
             nextFilter = null;
         }
         if (pop)
         {
-            Text = CurrentMessage.popSleuthNode(Text);
+            popObfuscator();
             pop = false;
         }
     }
@@ -88,12 +89,25 @@ public class PlayerController : MonoBehaviour
     public void pushObfuscator(Obfuscator obf)
     {
         Text = CurrentMessage.pushSleuthNode(Text, obf);
+        obfuscatorPushed?.Invoke(obf);
     }
 
     public void popObfuscator()
     {
         Text = CurrentMessage.popSleuthNode(Text);
+        obfuscatorPopped?.Invoke();
     }
 
+    //
+    // DELEGATES
+    //
+    public delegate void ObfuscatorPushed(Obfuscator obf);
+    public ObfuscatorPushed obfuscatorPushed;
+
+    public delegate void ObfuscatorPopped();
+    public ObfuscatorPopped obfuscatorPopped;
+
+    public delegate void MessageSwitched(Message m);
+    public MessageSwitched messageSwitched;
 
 }

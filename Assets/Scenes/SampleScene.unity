@@ -529,7 +529,6 @@ MonoBehaviour:
   obfuscators:
   - {fileID: 654488236}
   - {fileID: 368794535}
-  uiManager: {fileID: 1698637921}
 --- !u!1 &545420590
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +576,6 @@ MonoBehaviour:
   untext: 
   obfuscators:
   - {fileID: 654488236}
-  uiManager: {fileID: 1698637921}
 --- !u!224 &616597653 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4327696644659207737, guid: 06192e3e0dfe82f4fb2540360a984576,
@@ -613,7 +611,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8c8779b613eff4dadf70bba3ce6788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentText: 
   nextFilter: {fileID: 0}
   pop: 0
   messageIndex: 0
@@ -730,7 +727,6 @@ MonoBehaviour:
   untext: 
   obfuscators:
   - {fileID: 368794535}
-  uiManager: {fileID: 1698637921}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
