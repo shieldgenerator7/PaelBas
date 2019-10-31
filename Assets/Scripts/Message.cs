@@ -32,6 +32,8 @@ public class Message : MonoBehaviour
     
     public List<Obfuscator> obfuscators;
 
+    public UIManager uiManager;
+
     private SleuthNode sleuthNodeRoot;
     private List<SleuthNode> sleuthNodes = new List<SleuthNode>();
     private SleuthNode sleuthNodeCurrent;
@@ -59,6 +61,7 @@ public class Message : MonoBehaviour
             sleuthNodes.Add(sleuth);
         }
         sleuthNodeCurrent = sleuth;
+        uiManager.push(obf.GetType().Name);
         return sleuthNodeCurrent.currentState;
     }
 
@@ -66,6 +69,7 @@ public class Message : MonoBehaviour
     {
         sleuthNodeCurrent.saveText(currentText);
         sleuthNodeCurrent = sleuthNodeCurrent.parent;
+        uiManager.pop();
         return sleuthNodeCurrent.currentState;
     }
 }

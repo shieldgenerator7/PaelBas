@@ -6,7 +6,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [TextArea]
-    public string currentText;
+    private string currentText;
+    public string Text
+    {
+        get => currentText;
+        set
+        {
+            currentText = value;
+            txtMessage.text = currentText;
+        }
+    }
 
     public Obfuscator nextFilter;
     public bool pop;
@@ -14,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private int messageIndex = 0;
     [SerializeField]
-    private List<Message> messages;
+    private List<Message> messages = new List<Message>();
 
     public int MessageIndex
     {
@@ -28,7 +37,7 @@ public class PlayerController : MonoBehaviour
                     value
                     )
                 );
-            txtMessage.text = messages[messageIndex].CurrentText;
+            Text = messages[messageIndex].CurrentText;
         }
     }
 
@@ -51,7 +60,7 @@ public class PlayerController : MonoBehaviour
         //        + " ==" + (result[i] == "")
         //        );
         //}
-        currentText = messages[messageIndex].Untext;
+        Text = messages[messageIndex].Untext;
         MessageIndex = 0;
         txtMessage.ActivateInputField();
     }
@@ -61,12 +70,12 @@ public class PlayerController : MonoBehaviour
     {
         if (nextFilter != null)
         {
-            currentText = CurrentMessage.pushSleuthNode(currentText, nextFilter);
+            Text = CurrentMessage.pushSleuthNode(Text, nextFilter);
             nextFilter = null;
         }
         if (pop)
         {
-            currentText = CurrentMessage.popSleuthNode(currentText);
+            Text = CurrentMessage.popSleuthNode(Text);
             pop = false;
         }
     }
@@ -74,6 +83,16 @@ public class PlayerController : MonoBehaviour
     public void adjustMessageIndex(int addend)
     {
         MessageIndex += addend;
+    }
+
+    public void pushObfuscator(Obfuscator obf)
+    {
+        Text = CurrentMessage.pushSleuthNode(Text, obf);
+    }
+
+    public void popObfuscator()
+    {
+        Text = CurrentMessage.popSleuthNode(Text);
     }
 
 
