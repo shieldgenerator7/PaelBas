@@ -34,13 +34,25 @@ public class Message : ScriptableObject
         sleuthNodeCurrent = sleuthNodeRoot;
     }
 
-    public void generateUntext()
+    public string generateUntext()
     {
         Untext = Text;
         foreach (Obfuscator obf in obfuscators)
         {
             Untext = obf.obfuscate(Untext);
         }
+        return Untext;
+    }
+
+    public string getUnobfuscatedText()
+    {
+        string untext = Untext;
+        for (int i = obfuscators.Count - 1; i >= 0; i--)
+        {
+            Obfuscator obf = obfuscators[i];
+            untext = obf.unobfuscate(untext);
+        }
+        return untext;
     }
 
     public string pushSleuthNode(string currentText, Obfuscator obf)
