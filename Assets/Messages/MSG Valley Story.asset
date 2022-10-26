@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: This valley was created as a landing zone for people who want to escape.
     Founded in the twenty-second century, it has been the foundation of salvation
-    for people for many years. To all the straggles left behind, hopefully the many
+    for people for many years. To all the stragglers left behind, hopefully the many
     messages we left will be sufficient for you to follow. Good luck!
   obfuscators:
   - {fileID: 11400000, guid: 3502cfd97cf297544b9801543e39b610, type: 2}
