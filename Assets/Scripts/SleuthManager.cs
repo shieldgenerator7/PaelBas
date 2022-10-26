@@ -6,7 +6,7 @@ public class SleuthManager : MonoBehaviour
 {
     public static SleuthManager instance;
 
-    private Dictionary<Message, SleuthTree> sleuthTreeList = new Dictionary<Message, SleuthTree>();
+    
     private SleuthTree sleuthTree;
 
     private void Awake()
@@ -21,14 +21,6 @@ public class SleuthManager : MonoBehaviour
         sleuthTree = getTree(message);
     }
 
-    public SleuthTree getTree(Message message)
-    {
-        if (!sleuthTreeList.ContainsKey(message))
-        {
-            sleuthTreeList.Add(message, new SleuthTree(message.Untext));
-        }
-        return sleuthTreeList[message];
-    }
 
     public void pushObfuscator(Obfuscator obf)
     {

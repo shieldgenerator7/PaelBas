@@ -7,8 +7,7 @@ public class MessageManager : MonoBehaviour
     public static MessageManager instance;
 
     private int messageIndex = 0;
-    [SerializeField]
-    private List<Message> messages = new List<Message>();
+   
 
     public int MessageIndex
     {
