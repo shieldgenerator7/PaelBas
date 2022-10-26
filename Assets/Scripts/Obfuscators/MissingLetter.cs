@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MissingLetter", menuName = "Obfuscator/MissingLetter")]
-public class MissingThirdLetter : Obfuscator
+public class MissingLetter : Obfuscator
 {
     [Range(1, 10)]
     [Tooltip("The position of the letter to remove. Base 1")]
