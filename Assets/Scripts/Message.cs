@@ -16,13 +16,7 @@ public class Message : ScriptableObject
 
     public string Untext { get; private set; }
 
-    public string CurrentText
-    {
-        get
-        {
-            return sleuthNodeCurrent.currentState;
-        }
-    }
+    public string CurrentText => sleuthNodeCurrent.currentState;
 
     public List<Obfuscator> obfuscators;
 

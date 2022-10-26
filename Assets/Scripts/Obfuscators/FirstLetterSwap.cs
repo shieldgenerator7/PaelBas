@@ -11,7 +11,7 @@ public class FirstLetterSwap : Obfuscator
         for (int iS = 0; iS < segments.Length; iS++)
         {
             string segment = segments[iS];
-            if (segment == "")
+            if (string.IsNullOrWhiteSpace(segment))
             {
                 continue;
             }
@@ -20,7 +20,7 @@ public class FirstLetterSwap : Obfuscator
             for (int iW = 0; iW < words.Length; iW++)
             {
                 string word = words[iW];
-                if (word == "")
+                if (string.IsNullOrWhiteSpace(word))
                 {
                     continue;
                 }

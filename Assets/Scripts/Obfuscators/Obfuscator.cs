@@ -29,14 +29,10 @@ public abstract class Obfuscator : ScriptableObject
     public abstract string unobfuscate(string untext);
 
     public string[] getSegments(string text)
-    {
-        return text.Split(segmentDelimiters);
-    }
+        => text.Split(segmentDelimiters);
     
     public string[] getWords(string text)
-    {
-        return text.Split(wordDelimiters);
-    }
+        => text.Split(wordDelimiters);
 
     /// <summary>
     /// Inserts the segments into the text

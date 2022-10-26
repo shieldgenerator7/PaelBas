@@ -17,7 +17,7 @@ public class MissingLetter : Obfuscator
         for (int iS = 0; iS < segments.Length; iS++)
         {
             string segment = segments[iS];
-            if (segment == "")
+            if (string.IsNullOrWhiteSpace(segment))
             {
                 continue;
             }
@@ -25,7 +25,7 @@ public class MissingLetter : Obfuscator
             for (int iW = 0; iW < words.Length; iW++)
             {
                 string word = words[iW];
-                if (word == "" || word.Length < missingLetterPosition)
+                if (string.IsNullOrWhiteSpace(word) || word.Length < missingLetterPosition)
                 {
                     continue;
                 }
@@ -46,7 +46,7 @@ public class MissingLetter : Obfuscator
         for (int iS = 0; iS < segments.Length; iS++)
         {
             string segment = segments[iS];
-            if (segment == "")
+            if (string.IsNullOrWhiteSpace(segment))
             {
                 continue;
             }
@@ -54,7 +54,7 @@ public class MissingLetter : Obfuscator
             for (int iW = 0; iW < words.Length; iW++)
             {
                 string word = words[iW];
-                if (word == "" || word.Length < prevLetterPosition)
+                if (string.IsNullOrWhiteSpace(word) || word.Length < prevLetterPosition)
                 {
                     continue;
                 }
