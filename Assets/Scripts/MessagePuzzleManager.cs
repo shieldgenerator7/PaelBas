@@ -6,11 +6,12 @@ public class MessagePuzzleManager : MonoBehaviour
 {
     public static MessagePuzzleManager instance;
 
-    [SerializeField]
+    public List<Message> messages = new List<Message>();
+
     private MessagePuzzleData data;
 
     private int messageIndex = 0;
-    private SleuthTree sleuthTree;
+    private MessagePuzzle messagePuzzle;
 
     public int MessageIndex
     {
@@ -18,24 +19,22 @@ public class MessagePuzzleManager : MonoBehaviour
         set
         {
             //Switch to new message
-            messageIndex = Mathf.Clamp(value, 0, data.messages.Count - 1);
-            sleuthTree = data.getTree(data.messages[messageIndex]);
-            onMessageSwitched?.Invoke(CurrentMessage);
+            messageIndex = Mathf.Clamp(value, 0, messages.Count - 1);
+            if (!data.hasIndex(messageIndex))
+            {
+                data.addMessage(messages[messageIndex]);
+            }
+            messagePuzzle = data.getMessagePuzzleByIndex(messageIndex);
+            onMessageSwitched?.Invoke(messagePuzzle.message);
         }
     }
     public delegate void MessageSwitched(Message m);
     public MessageSwitched onMessageSwitched;
 
-    public Message CurrentMessage
-    {
-        get => data.messages[MessageIndex];
-        set => MessageIndex = data.messages.IndexOf(value);
-    }
-
     public string Text
     {
-        get => sleuthTree.Text;
-        set => sleuthTree.saveText(value);
+        get => messagePuzzle.sleuthTree.Text;
+        set => messagePuzzle.sleuthTree.saveText(value);
     }
 
     // Start is called before the first frame update
@@ -43,14 +42,14 @@ public class MessagePuzzleManager : MonoBehaviour
     {
         instance = this;
         //Init messages
-        data.messages.ForEach(msg => msg.init());
+        messages.ForEach(msg => msg.init());
         //Init text
         MessageIndex = 0;
     }
 
     public void pushObfuscator(Obfuscator obf)
     {
-        sleuthTree.pushObfuscator(obf);
+        messagePuzzle.sleuthTree.pushObfuscator(obf);
         onObfuscatorPushed?.Invoke(obf);
     }
     public delegate void ObfuscatorPushed(Obfuscator obf);
@@ -58,7 +57,7 @@ public class MessagePuzzleManager : MonoBehaviour
 
     public void popObfuscator()
     {
-        sleuthTree.popObfuscator();
+        messagePuzzle.sleuthTree.popObfuscator();
         onObfuscatorPopped?.Invoke();
     }
     public delegate void ObfuscatorPopped();

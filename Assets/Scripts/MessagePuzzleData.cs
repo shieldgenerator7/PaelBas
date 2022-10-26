@@ -5,17 +5,24 @@ using UnityEngine;
 [System.Serializable]
 public class MessagePuzzleData
 {
-    [SerializeField]
-    private Dictionary<Message, SleuthTree> sleuthTreeList = new Dictionary<Message, SleuthTree>();
-    [SerializeField]
-    public List<Message> messages = new List<Message>();
+    private List<MessagePuzzle> messagePuzzles = new List<MessagePuzzle>();
 
-    public SleuthTree getTree(Message message)
+    public bool hasIndex(int index)
+        => index >= 0 && index < messagePuzzles.Count;
+
+    public MessagePuzzle getMessagePuzzleByIndex(int index)
     {
-        if (!sleuthTreeList.ContainsKey(message))
+        if (hasIndex(index))
         {
-            sleuthTreeList.Add(message, new SleuthTree(message.Untext));
+            return messagePuzzles[index];
         }
-        return sleuthTreeList[message];
+        return null;
+    }
+
+    public MessagePuzzle addMessage(Message message)
+    {
+        MessagePuzzle mp = new MessagePuzzle(message);
+        messagePuzzles.Add(mp);
+        return mp;
     }
 }
