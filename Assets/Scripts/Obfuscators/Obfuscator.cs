@@ -149,7 +149,7 @@ public abstract class Obfuscator : ScriptableObject
 
     public string[] getSegments(string text)
         => text.Split(segmentDelimiters);
-    
+
     public string[] getWords(string text)
         => text.Split(wordDelimiters);
 
@@ -163,7 +163,7 @@ public abstract class Obfuscator : ScriptableObject
     {
         string output = "";
         int segmentIndex = 0;
-        for(int i = 0; i < text.Length; i++)
+        for (int i = 0; i < text.Length; i++)
         {
             if (segmentDelimiters.Contains(text[i]))
             {

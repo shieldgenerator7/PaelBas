@@ -9,12 +9,12 @@ public class ReverseOrder : Obfuscator
 
     protected override string obfuscate(string word)
     {
-                string output = "";
-                for (int i = word.Length - 1; i >= 0; i--)
-                {
-                    output += word[i];
-                }
-                return output;
+        string output = "";
+        for (int i = word.Length - 1; i >= 0; i--)
+        {
+            output += word[i];
+        }
+        return output;
     }
     protected override string unobfuscate(string untext)
     {

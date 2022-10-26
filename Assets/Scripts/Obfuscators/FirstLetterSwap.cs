@@ -9,28 +9,28 @@ public class FirstLetterSwap : Obfuscator
 
     protected override string obfuscate(string segment)
     {
-            string[] words = getWords(segment);
-            int swapIndex = -1;
-            for (int iW = 0; iW < words.Length; iW++)
+        string[] words = getWords(segment);
+        int swapIndex = -1;
+        for (int iW = 0; iW < words.Length; iW++)
+        {
+            string word = words[iW];
+            if (string.IsNullOrWhiteSpace(word))
             {
-                string word = words[iW];
-                if (string.IsNullOrWhiteSpace(word))
-                {
-                    continue;
-                }
-                if (swapIndex < 0)
-                {
-                    swapIndex = iW;
-                }
-                else
-                {
-                    char swapChar = word[0];
-                    words[iW] = words[swapIndex][0] + word.Substring(1);
-                    words[swapIndex] = swapChar + words[swapIndex].Substring(1);
-                    swapIndex = -1;
-                }
+                continue;
             }
-            return setWords(words, segment);
+            if (swapIndex < 0)
+            {
+                swapIndex = iW;
+            }
+            else
+            {
+                char swapChar = word[0];
+                words[iW] = words[swapIndex][0] + word.Substring(1);
+                words[swapIndex] = swapChar + words[swapIndex].Substring(1);
+                swapIndex = -1;
+            }
+        }
+        return setWords(words, segment);
     }
     protected override string unobfuscate(string untext)
     {

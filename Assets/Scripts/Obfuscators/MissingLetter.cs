@@ -15,29 +15,29 @@ public class MissingLetter : Obfuscator
 
     protected override string obfuscate(string word)
     {
-                if (word.Length < missingLetterPosition)
-                {
-                    return word;
-                }
-                string head = word.Substring(0, missingLetterPosition - 1);
-                string tail = (word.Length > missingLetterPosition)
-                    ? word.Substring(missingLetterPosition)
-                    : "";
-                return head + tail;
+        if (word.Length < missingLetterPosition)
+        {
+            return word;
+        }
+        string head = word.Substring(0, missingLetterPosition - 1);
+        string tail = (word.Length > missingLetterPosition)
+            ? word.Substring(missingLetterPosition)
+            : "";
+        return head + tail;
     }
     protected override string unobfuscate(string word)
     {
         int prevLetterPosition = missingLetterPosition - 1;
-        
-                if (word.Length < prevLetterPosition)
-                {
-                    return word;
-                }
-                string head = word.Substring(0, missingLetterPosition - 1);
-                string middle = missingFillerChar;
-                string tail = (word.Length > prevLetterPosition)
-                    ? word.Substring(prevLetterPosition)
-                    : "";
-                return head + middle + tail;
+
+        if (word.Length < prevLetterPosition)
+        {
+            return word;
+        }
+        string head = word.Substring(0, missingLetterPosition - 1);
+        string middle = missingFillerChar;
+        string tail = (word.Length > prevLetterPosition)
+            ? word.Substring(prevLetterPosition)
+            : "";
+        return head + middle + tail;
     }
 }
