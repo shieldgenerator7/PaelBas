@@ -12,6 +12,8 @@ public class SleuthNode
     string output;//the text directly after this node processes
     public string currentState;//the text after further user input
 
+    public Obfuscator Obfuscator { get; private set; }
+
     public SleuthNode parent { get; private set; }
     private Dictionary<Obfuscator, SleuthNode> children;
 
@@ -28,6 +30,7 @@ public class SleuthNode
     public SleuthNode(string input, Obfuscator obfuscator)
         : this(input)
     {
+        this.Obfuscator = obfuscator;
         this.output = obfuscator.Unobfuscate(this.input);
         this.currentState = this.output;
     }

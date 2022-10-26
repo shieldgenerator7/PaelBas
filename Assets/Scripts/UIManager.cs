@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
 
     private void pushObfuscator(Obfuscator obf)
     {
-        push(obf.ObfuscatedCharacterName ?? obf.GetType().Name);
+        push(getObfuscatorName(obf));
     }
 
     private void popObfuscator()
@@ -78,9 +78,13 @@ public class UIManager : MonoBehaviour
         pop();
     }
 
-    private void switchMessage(Message m)
+    private string getObfuscatorName(Obfuscator obf)
+        => obf.ObfuscatedCharacterName ?? obf.GetType().Name;
+
+    private void switchMessage(MessagePuzzle mp)
     {
-        clear();
-        //TODO: populate list with names of obfuscators in new message (if any)
+        names = mp.sleuthTree.ObfuscatorTrail
+            .ConvertAll(obf => getObfuscatorName(obf));
+        refresh();
     }
 }

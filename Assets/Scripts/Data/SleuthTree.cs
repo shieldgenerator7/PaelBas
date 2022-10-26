@@ -35,5 +35,22 @@ public class SleuthTree
         return sleuthNode.currentState;
     }
 
-
+    public List<Obfuscator> ObfuscatorTrail
+    {
+        get
+        {
+            List<Obfuscator> obfuscatorTrail = new List<Obfuscator>();
+            SleuthNode node = sleuthNode;
+            while (node)
+            {
+                if (node.Obfuscator)
+                {
+                    obfuscatorTrail.Add(node.Obfuscator);
+                }
+                node = node.parent;
+            }
+            obfuscatorTrail.Reverse();
+            return obfuscatorTrail;
+        }
+    }
 }

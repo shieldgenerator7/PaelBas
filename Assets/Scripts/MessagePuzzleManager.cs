@@ -21,10 +21,10 @@ public class MessagePuzzleManager : MonoBehaviour
             //Switch to new message
             messageIndex = Mathf.Clamp(value, 0, messages.Count - 1);
             messagePuzzle = data.getMessagePuzzle(messages[messageIndex]);
-            onMessageSwitched?.Invoke(messagePuzzle.message);
+            onMessageSwitched?.Invoke(messagePuzzle);
         }
     }
-    public delegate void MessageSwitched(Message m);
+    public delegate void MessageSwitched(MessagePuzzle m);
     public MessageSwitched onMessageSwitched;
 
     public string Text
