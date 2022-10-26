@@ -5,6 +5,13 @@ using UnityEngine;
 
 public abstract class Obfuscator : ScriptableObject
 {
+    public string characterName;
+
+    public string ObfuscatedCharacterName
+        => (!string.IsNullOrWhiteSpace(characterName))
+            ? Obfuscate(characterName) 
+            : null;
+
     protected enum ObfuscationScope
     {
         MESSAGE,

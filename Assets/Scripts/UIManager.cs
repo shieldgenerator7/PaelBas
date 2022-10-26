@@ -70,7 +70,7 @@ public class UIManager : MonoBehaviour
 
     private void pushObfuscator(Obfuscator obf)
     {
-        push(obf.GetType().Name);
+        push(obf.ObfuscatedCharacterName ?? obf.GetType().Name);
     }
 
     private void popObfuscator()

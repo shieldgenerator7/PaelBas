@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1f461731fcde194a9cac657069e255f, type: 3}
   m_Name: FirstLetterSwap
   m_EditorClassIdentifier: 
+  characterName: Sally Lee
