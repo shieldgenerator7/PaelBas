@@ -11,24 +11,24 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MessageManager.instance.onMessageSwitched += (msg) => updateText();
-        MessageManager.instance.onObfuscatorPushed += (obf) => updateText();
-        MessageManager.instance.onObfuscatorPopped += updateText;
+        MessagePuzzleManager.instance.onMessageSwitched += (msg) => updateText();
+        MessagePuzzleManager.instance.onObfuscatorPushed += (obf) => updateText();
+        MessagePuzzleManager.instance.onObfuscatorPopped += updateText;
         txtMessage.ActivateInputField();
     }
 
     public void adjustMessageIndex(int addend)
     {
-        MessageManager.instance.MessageIndex += addend;
+        MessagePuzzleManager.instance.MessageIndex += addend;
     }
 
     public void saveText(string text)
     {
-        MessageManager.instance.Text = text;
+        MessagePuzzleManager.instance.Text = text;
     }
     public void updateText()
     {
-        txtMessage.text = MessageManager.instance.Text;
+        txtMessage.text = MessagePuzzleManager.instance.Text;
     }
 
 

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MessageManager : MonoBehaviour
+public class MessagePuzzleManager : MonoBehaviour
 {
-    public static MessageManager instance;
+    public static MessagePuzzleManager instance;
 
     [SerializeField]
     private MessagePuzzleData data;
