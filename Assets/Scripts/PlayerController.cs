@@ -27,13 +27,7 @@ public class PlayerController : MonoBehaviour
         get => messageIndex;
         set
         {
-            messageIndex = Mathf.Min(
-                messages.Count - 1,
-                Mathf.Max(
-                    0,
-                    value
-                    )
-                );
+            messageIndex = Mathf.Clamp(value, 0, messages.Count - 1);
             Text = messages[messageIndex].CurrentText;
             messageSwitched?.Invoke(CurrentMessage);
         }
@@ -54,7 +48,6 @@ public class PlayerController : MonoBehaviour
         messages.ForEach(msg => msg.init());
         //Init text
         MessageIndex = 0;
-        Text = messages[messageIndex].Untext;
         txtMessage.ActivateInputField();
     }
 
