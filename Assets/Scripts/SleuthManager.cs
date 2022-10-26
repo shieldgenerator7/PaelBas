@@ -6,19 +6,48 @@ public class SleuthManager : MonoBehaviour
 {
     public static SleuthManager instance;
 
-    private Dictionary<Message, SleuthTree> sleuthTrees = new Dictionary<Message, SleuthTree>();
+    private Dictionary<Message, SleuthTree> sleuthTreeList = new Dictionary<Message, SleuthTree>();
+    private SleuthTree sleuthTree;
 
     private void Awake()
     {
         instance = this;
+
+        MessageManager.instance.onMessageSwitched += setSleuthTree;
+    }
+
+    public void setSleuthTree(Message message)
+    {
+        sleuthTree = getTree(message);
     }
 
     public SleuthTree getTree(Message message)
     {
-        if (!sleuthTrees.ContainsKey(message))
+        if (!sleuthTreeList.ContainsKey(message))
         {
-            sleuthTrees.Add(message, new SleuthTree(message.Untext));
+            sleuthTreeList.Add(message, new SleuthTree(message.Untext));
         }
-        return sleuthTrees[message];
+        return sleuthTreeList[message];
+    }
+
+    public void pushObfuscator(Obfuscator obf)
+    {
+        sleuthTree.pushObfuscator(obf);
+        onObfuscatorPushed?.Invoke(obf);
+    }
+    public delegate void ObfuscatorPushed(Obfuscator obf);
+    public ObfuscatorPushed onObfuscatorPushed;
+
+    public void popObfuscator()
+    {
+        sleuthTree.popObfuscator();
+        onObfuscatorPopped?.Invoke();
+    }
+    public delegate void ObfuscatorPopped();
+    public ObfuscatorPopped onObfuscatorPopped;
+
+    public void saveText(string text)
+    {
+        sleuthTree.saveText(text);
     }
 }

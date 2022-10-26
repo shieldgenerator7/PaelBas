@@ -8,7 +8,6 @@ public class AddObfuscatorButton : MonoBehaviour
 
     public void addObfuscator()
     {
-        PlayerController player = FindObjectOfType<PlayerController>();
-        player.pushObfuscator(obfuscator);
+        SleuthManager.instance.pushObfuscator(obfuscator);
     }
 }

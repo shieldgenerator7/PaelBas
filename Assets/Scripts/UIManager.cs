@@ -19,10 +19,9 @@ public class UIManager : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
         //Player delegates
-        PlayerController pc = FindObjectOfType<PlayerController>();
-        pc.obfuscatorPushed += pushObfuscator;
-        pc.obfuscatorPopped += popObfuscator;
-        pc.messageSwitched += switchMessage;
+        SleuthManager.instance.onObfuscatorPushed += pushObfuscator;
+        SleuthManager.instance.onObfuscatorPopped += popObfuscator;
+        MessageManager.instance.onMessageSwitched += switchMessage;
     }
 
     public void push(string name)
