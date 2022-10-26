@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         set
         {
             messageIndex = Mathf.Clamp(value, 0, messages.Count - 1);
-            Text = messages[messageIndex].CurrentText;
+            Text = messages[messageIndex].SleuthTree.Text;
             messageSwitched?.Invoke(CurrentMessage);
         }
     }
@@ -58,13 +58,17 @@ public class PlayerController : MonoBehaviour
 
     public void pushObfuscator(Obfuscator obf)
     {
-        Text = CurrentMessage.pushSleuthNode(Text, obf);
+        SleuthTree tree = CurrentMessage.SleuthTree;
+        tree.saveText(Text);
+        Text = tree.pushObfuscator(obf);
         obfuscatorPushed?.Invoke(obf);
     }
 
     public void popObfuscator()
     {
-        Text = CurrentMessage.popSleuthNode(Text);
+        SleuthTree tree = CurrentMessage.SleuthTree;
+        tree.saveText(Text);
+        Text = tree.popObfuscator();
         obfuscatorPopped?.Invoke();
     }
 

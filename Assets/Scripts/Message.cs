@@ -16,13 +16,10 @@ public class Message : ScriptableObject
 
     public string Untext { get; private set; }
 
-    public string CurrentText => sleuthNodeCurrent.currentState;
 
     public List<Obfuscator> obfuscators;
 
-    private SleuthNode sleuthNodeRoot;
-    private List<SleuthNode> sleuthNodes = new List<SleuthNode>();
-    private SleuthNode sleuthNodeCurrent;
+    public SleuthTree SleuthTree { get; private set; }
 
     // Start is called before the first frame update
     public void init()
@@ -30,8 +27,7 @@ public class Message : ScriptableObject
         generateUntext();
 
         //SleuthNode Tree
-        sleuthNodeRoot = new SleuthNode(Untext);
-        sleuthNodeCurrent = sleuthNodeRoot;
+        SleuthTree = new SleuthTree(Untext);
     }
 
     public string generateUntext()
@@ -53,27 +49,5 @@ public class Message : ScriptableObject
             untext = obf.unobfuscate(untext);
         }
         return untext;
-    }
-
-    public string pushSleuthNode(string currentText, Obfuscator obf)
-    {
-        sleuthNodeCurrent.saveText(currentText);
-        SleuthNode sleuth = sleuthNodeCurrent.addChild(obf);
-        if (!sleuthNodes.Contains(sleuth))
-        {
-            sleuthNodes.Add(sleuth);
-        }
-        sleuthNodeCurrent = sleuth;
-        return sleuthNodeCurrent.currentState;
-    }
-
-    public string popSleuthNode(string currentText)
-    {
-        if (sleuthNodeCurrent != sleuthNodeRoot)
-        {
-            sleuthNodeCurrent.saveText(currentText);
-            sleuthNodeCurrent = sleuthNodeCurrent.parent;
-        }
-        return sleuthNodeCurrent.currentState;
     }
 }
