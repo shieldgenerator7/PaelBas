@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Message : MonoBehaviour
+[CreateAssetMenu(fileName = "Message", menuName = "Message")]
+public class Message : ScriptableObject
 {
     [SerializeField]
     [TextArea]
@@ -13,14 +14,7 @@ public class Message : MonoBehaviour
         private set => text = value;
     }
 
-    [SerializeField]
-    [TextArea]
-    private string untext;
-    public string Untext
-    {
-        get => untext;
-        private set => untext = value;
-    }
+    public string Untext { get; private set; }
 
     public string CurrentText
     {
@@ -29,9 +23,9 @@ public class Message : MonoBehaviour
             return sleuthNodeCurrent.currentState;
         }
     }
-    
+
     public List<Obfuscator> obfuscators;
-    
+
     private SleuthNode sleuthNodeRoot;
     private List<SleuthNode> sleuthNodes = new List<SleuthNode>();
     private SleuthNode sleuthNodeCurrent;
@@ -39,15 +33,20 @@ public class Message : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        generateUntext();
+
+        //SleuthNode Tree
+        sleuthNodeRoot = new SleuthNode(Untext);
+        sleuthNodeCurrent = sleuthNodeRoot;
+    }
+
+    public void generateUntext()
+    {
         Untext = Text;
         foreach (Obfuscator obf in obfuscators)
         {
             Untext = obf.obfuscate(Untext);
         }
-
-        //SleuthNode Tree
-        sleuthNodeRoot = new SleuthNode(Untext);
-        sleuthNodeCurrent = sleuthNodeRoot;
     }
 
     public string pushSleuthNode(string currentText, Obfuscator obf)
