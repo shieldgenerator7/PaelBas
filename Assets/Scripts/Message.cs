@@ -8,41 +8,39 @@ public class Message : ScriptableObject
     [SerializeField]
     [TextArea(5, 20)]
     private string text;
-    public string Text
-    {
-        get => text;
-        private set => text = value;
-    }
-
-    public string Untext { get; private set; }
-
 
     public List<Obfuscator> obfuscators;
 
-    // Start is called before the first frame update
-    public void init()
+
+    public string Text
     {
-        generateUntext();
+        get => text;
     }
 
-    public string generateUntext()
+    public string Untext
     {
-        Untext = Text;
-        foreach (Obfuscator obf in obfuscators)
+        get
         {
-            Untext = obf.Obfuscate(Untext);
+            string untext = Text;
+            foreach (Obfuscator obf in obfuscators)
+            {
+                untext = obf.Obfuscate(untext);
+            }
+            return untext;
         }
-        return Untext;
     }
 
-    public string getUnobfuscatedText()
+    public string UnobfuscatedText
     {
-        string untext = Untext;
-        for (int i = obfuscators.Count - 1; i >= 0; i--)
+        get
         {
-            Obfuscator obf = obfuscators[i];
-            untext = obf.Unobfuscate(untext);
+            string unobfuscatedText = Untext;
+            for (int i = obfuscators.Count - 1; i >= 0; i--)
+            {
+                Obfuscator obf = obfuscators[i];
+                unobfuscatedText = obf.Unobfuscate(unobfuscatedText);
+            }
+            return unobfuscatedText;
         }
-        return untext;
     }
 }

@@ -37,8 +37,6 @@ public class MessagePuzzleManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        //Init messages
-        messages.ForEach(msg => msg.init());
         //Init text
         MessageIndex = 0;
     }

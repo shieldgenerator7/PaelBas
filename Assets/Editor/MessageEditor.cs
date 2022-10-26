@@ -16,13 +16,13 @@ public class MessageEditor : Editor
         showFolds = EditorGUILayout.Foldout(showFolds, "Obfuscated");
         if (showFolds)
         {
-            GUILayout.TextArea(message.generateUntext());
+            GUILayout.TextArea(message.Untext);
         }
 
         showFolds = EditorGUILayout.Foldout(showFolds, "Unobfuscated");
         if (showFolds)
         {
-            GUILayout.TextArea(message.getUnobfuscatedText());
+            GUILayout.TextArea(message.UnobfuscatedText);
         }
     }
 }
