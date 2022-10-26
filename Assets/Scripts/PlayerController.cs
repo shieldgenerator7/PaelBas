@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
         MessagePuzzleManager.instance.onObfuscatorPushed += (obf) => updateText();
         MessagePuzzleManager.instance.onObfuscatorPopped += updateText;
         txtMessage.ActivateInputField();
+        updateText();
     }
 
     public void adjustMessageIndex(int addend)
