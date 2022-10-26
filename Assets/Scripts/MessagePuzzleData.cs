@@ -1,28 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
 public class MessagePuzzleData
 {
-    private List<MessagePuzzle> messagePuzzles = new List<MessagePuzzle>();
+    private Dictionary<Message, MessagePuzzle> messagePuzzleMap = new Dictionary<Message, MessagePuzzle>();
 
-    public bool hasIndex(int index)
-        => index >= 0 && index < messagePuzzles.Count;
-
-    public MessagePuzzle getMessagePuzzleByIndex(int index)
+    public MessagePuzzle getMessagePuzzle(Message message)
     {
-        if (hasIndex(index))
+        if (!messagePuzzleMap.ContainsKey(message))
         {
-            return messagePuzzles[index];
+            addMessage(message);
         }
-        return null;
+        return messagePuzzleMap[message];
     }
 
-    public MessagePuzzle addMessage(Message message)
+    private MessagePuzzle addMessage(Message message)
     {
         MessagePuzzle mp = new MessagePuzzle(message);
-        messagePuzzles.Add(mp);
+        messagePuzzleMap.Add(message, mp);
         return mp;
     }
+
+
+    #region Saving and Loading
+
+    // used for saving it out
+    private MessagePuzzle[] messagePuzzleList;
+
+    //call before saving
+    public void compress()
+    {
+        messagePuzzleList = new MessagePuzzle[messagePuzzleMap.Count];
+        int i = 0;
+        foreach (Message msg in messagePuzzleMap.Keys)
+        {
+            messagePuzzleList[i] = messagePuzzleMap[msg];
+            i++;
+        }
+    }
+
+    //call after loading
+    public void inflate()
+    {
+        foreach (MessagePuzzle mp in messagePuzzleList)
+        {
+            messagePuzzleMap.Add(mp.message, mp);
+        }
+    }
+
+    #endregion
 }

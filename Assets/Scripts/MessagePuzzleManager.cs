@@ -8,7 +8,7 @@ public class MessagePuzzleManager : MonoBehaviour
 
     public List<Message> messages = new List<Message>();
 
-    private MessagePuzzleData data;
+    private MessagePuzzleData data = new MessagePuzzleData();
 
     private int messageIndex = 0;
     private MessagePuzzle messagePuzzle;
@@ -20,11 +20,7 @@ public class MessagePuzzleManager : MonoBehaviour
         {
             //Switch to new message
             messageIndex = Mathf.Clamp(value, 0, messages.Count - 1);
-            if (!data.hasIndex(messageIndex))
-            {
-                data.addMessage(messages[messageIndex]);
-            }
-            messagePuzzle = data.getMessagePuzzleByIndex(messageIndex);
+            messagePuzzle = data.getMessagePuzzle(messages[messageIndex]);
             onMessageSwitched?.Invoke(messagePuzzle.message);
         }
     }
