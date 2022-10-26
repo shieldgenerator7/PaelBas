@@ -33,14 +33,17 @@ public class UIManager : MonoBehaviour
 
     public void pop()
     {
-        names.RemoveAt(names.Count - 1);
+        if (names.Count > 0)
+        {
+            names.RemoveAt(names.Count - 1);
+        }
         refresh();
     }
 
     private void refresh()
     {
         //Destroy old UI components
-        foreach(GameObject uiElement in uiElementList)
+        foreach (GameObject uiElement in uiElementList)
         {
             Destroy(uiElement);
         }
@@ -79,5 +82,6 @@ public class UIManager : MonoBehaviour
     private void switchMessage(Message m)
     {
         clear();
+        //TODO: populate list with names of obfuscators in new message (if any)
     }
 }
