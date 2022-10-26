@@ -30,4 +30,6 @@ MonoBehaviour:
     salt
 
     blue berry jam'
-  obfuscators: []
+  obfuscators:
+  - {fileID: 11400000, guid: 39a2395290cc67144ad7ae7cbad0d3af, type: 2}
+  - {fileID: 11400000, guid: c6a7563d7bef3fd49b9537c4c7c113e2, type: 2}

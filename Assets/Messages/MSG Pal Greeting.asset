@@ -18,4 +18,5 @@ MonoBehaviour:
 
     Explore
     around and you might find my friends.'
-  obfuscators: []
+  obfuscators:
+  - {fileID: 11400000, guid: c6a7563d7bef3fd49b9537c4c7c113e2, type: 2}

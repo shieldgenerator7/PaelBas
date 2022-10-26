@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: MSG Lally See Greeting
   m_EditorClassIdentifier: 
   text: Hello I am Sally Lee. How are you? I am doing well. I like cats, do you?
-  obfuscators: []
+  obfuscators:
+  - {fileID: 11400000, guid: 39a2395290cc67144ad7ae7cbad0d3af, type: 2}
