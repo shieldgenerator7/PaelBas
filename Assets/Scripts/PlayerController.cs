@@ -58,8 +58,11 @@ public class PlayerController : MonoBehaviour
         //        + " ==" + (result[i] == "")
         //        );
         //}
-        Text = messages[messageIndex].Untext;
+        //Init messages
+        messages.ForEach(msg => msg.init());
+        //Init text
         MessageIndex = 0;
+        Text = messages[messageIndex].Untext;
         txtMessage.ActivateInputField();
     }
 
