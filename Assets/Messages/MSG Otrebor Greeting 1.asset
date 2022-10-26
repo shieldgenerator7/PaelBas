@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13a273ebba6d6604dac82b373dfb0f31, type: 3}
-  m_Name: MSG Lally See Greeting
+  m_Name: MSG Otrebor Greeting 1
   m_EditorClassIdentifier: 
-  text: Hello I am Sally Lee. How are you? I am doing well. I like cats, do you?
+  text: This is Roberto, reporting in. All systems up and running.
   obfuscators:
-  - {fileID: 11400000, guid: 39a2395290cc67144ad7ae7cbad0d3af, type: 2}
+  - {fileID: 11400000, guid: 3502cfd97cf297544b9801543e39b610, type: 2}
