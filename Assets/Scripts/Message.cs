@@ -6,7 +6,7 @@ using UnityEngine;
 public class Message : ScriptableObject
 {
     [SerializeField]
-    [TextArea]
+    [TextArea(5, 20)]
     private string text;
     public string Text
     {
