@@ -17,8 +17,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    private int messageIndex = 0;
+    private int messageIndex = -1;
     [SerializeField]
     private List<Message> messages = new List<Message>();
 
@@ -27,6 +26,12 @@ public class PlayerController : MonoBehaviour
         get => messageIndex;
         set
         {
+            //Save prev message
+            if (messageIndex >= 0)
+            {
+                CurrentMessage.SleuthTree.saveText(Text);
+            }
+            //Switch to new message
             messageIndex = Mathf.Clamp(value, 0, messages.Count - 1);
             Text = messages[messageIndex].SleuthTree.Text;
             messageSwitched?.Invoke(CurrentMessage);
