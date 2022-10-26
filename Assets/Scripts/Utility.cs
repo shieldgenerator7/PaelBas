@@ -11,6 +11,33 @@ public static class Utility
 
     public const int MAX_HIT_COUNT = 70;
 
+    #region String Manipulation Functions
+    public static (char, char) swapCase(char char1, char char2)
+    {
+        //Find out if it's upper case
+        bool upper1 = char.IsUpper(char1);
+        bool upper2 = char.IsUpper(char2);
+        //Switch case of char2
+        if (upper1)
+        {
+            char2 = char.ToUpper(char2);
+        }
+        else
+        {
+            char2 = char.ToLower(char2);
+        }
+        //Switch case of char1
+        if (upper2)
+        {
+            char1 = char.ToUpper(char1);
+        }
+        else
+        {
+            char1 = char.ToLower(char1);
+        }
+        return (char1, char2);
+    }
+    #endregion
 
     #region Vector3 Extension Methods
 
@@ -292,6 +319,7 @@ public static class Utility
     }
     #endregion
 
+    #region Number Computation Methods & Misc (from Stonicorn)
     /// <summary>
     /// Loops the value around until it falls in the range of [min, max]
     /// </summary>
@@ -544,4 +572,5 @@ public static class Utility
         raycastPlane.Raycast(ray, out distance);
         return ray.GetPoint(distance);
     }
+#endregion
 }

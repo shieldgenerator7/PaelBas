@@ -24,9 +24,10 @@ public class FirstLetterSwap : Obfuscator
             }
             else
             {
-                char swapChar = word[0];
-                words[iW] = words[swapIndex][0] + word.Substring(1);
-                words[swapIndex] = swapChar + words[swapIndex].Substring(1);
+                string swapWord = words[swapIndex];
+                (word, swapWord) = swapFirstCharacter(word, swapWord);
+                words[iW] = word;
+                words[swapIndex] = swapWord;
                 swapIndex = -1;
             }
         }
@@ -38,5 +39,18 @@ public class FirstLetterSwap : Obfuscator
         //obfuscating it again unobfuscates it
         //in this case
         return obfuscate(untext);
+    }
+
+    private (string, string) swapFirstCharacter(string word1, string word2)
+    {
+        //Get the first letter
+        char char1 = word1[0];
+        char char2 = word2[0];
+        //Swap case
+        (char1, char2) = Utility.swapCase(char1, char2);
+        //Switch letters of words
+        string newWord1 = char2 + word1.Substring(1);
+        string newWord2 = char1 + word2.Substring(1);
+        return (newWord1, newWord2);
     }
 }
