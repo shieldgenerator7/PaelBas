@@ -35,7 +35,7 @@ public class Message : ScriptableObject
         Untext = Text;
         foreach (Obfuscator obf in obfuscators)
         {
-            Untext = obf.obfuscate(Untext);
+            Untext = obf.Obfuscate(Untext);
         }
         return Untext;
     }
@@ -46,7 +46,7 @@ public class Message : ScriptableObject
         for (int i = obfuscators.Count - 1; i >= 0; i--)
         {
             Obfuscator obf = obfuscators[i];
-            untext = obf.unobfuscate(untext);
+            untext = obf.Unobfuscate(untext);
         }
         return untext;
     }

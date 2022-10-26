@@ -5,16 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FirstLetterSwap", menuName = "Obfuscator/FirstLetterSwap")]
 public class FirstLetterSwap : Obfuscator
 {
-    public override string obfuscate(string text)
+    protected override ObfuscationScope Scope => ObfuscationScope.SEGMENT;
+
+    protected override string obfuscate(string segment)
     {
-        string[] segments = getSegments(text);
-        for (int iS = 0; iS < segments.Length; iS++)
-        {
-            string segment = segments[iS];
-            if (string.IsNullOrWhiteSpace(segment))
-            {
-                continue;
-            }
             string[] words = getWords(segment);
             int swapIndex = -1;
             for (int iW = 0; iW < words.Length; iW++)
@@ -36,11 +30,9 @@ public class FirstLetterSwap : Obfuscator
                     swapIndex = -1;
                 }
             }
-            segments[iS] = setWords(words, segment);
-        }
-        return setSegments(segments, text);
+            return setWords(words, segment);
     }
-    public override string unobfuscate(string untext)
+    protected override string unobfuscate(string untext)
     {
         //Interestingly enough,
         //obfuscating it again unobfuscates it

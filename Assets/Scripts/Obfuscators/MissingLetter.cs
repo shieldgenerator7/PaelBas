@@ -11,62 +11,33 @@ public class MissingLetter : Obfuscator
     [Tooltip("The character to use to fill in for the missing character when unobfuscating")]
     public string missingFillerChar = "?";
 
-    public override string obfuscate(string text)
+    protected override ObfuscationScope Scope => ObfuscationScope.WORD;
+
+    protected override string obfuscate(string word)
     {
-        string[] segments = getSegments(text);
-        for (int iS = 0; iS < segments.Length; iS++)
-        {
-            string segment = segments[iS];
-            if (string.IsNullOrWhiteSpace(segment))
-            {
-                continue;
-            }
-            string[] words = getWords(segment);
-            for (int iW = 0; iW < words.Length; iW++)
-            {
-                string word = words[iW];
-                if (string.IsNullOrWhiteSpace(word) || word.Length < missingLetterPosition)
+                if (word.Length < missingLetterPosition)
                 {
-                    continue;
+                    return word;
                 }
                 string head = word.Substring(0, missingLetterPosition - 1);
                 string tail = (word.Length > missingLetterPosition)
                     ? word.Substring(missingLetterPosition)
                     : "";
-                words[iW] = head + tail;
-            }
-            segments[iS] = setWords(words, segment);
-        }
-        return setSegments(segments, text);
+                return head + tail;
     }
-    public override string unobfuscate(string untext)
+    protected override string unobfuscate(string word)
     {
         int prevLetterPosition = missingLetterPosition - 1;
-        string[] segments = getSegments(untext);
-        for (int iS = 0; iS < segments.Length; iS++)
-        {
-            string segment = segments[iS];
-            if (string.IsNullOrWhiteSpace(segment))
-            {
-                continue;
-            }
-            string[] words = getWords(segment);
-            for (int iW = 0; iW < words.Length; iW++)
-            {
-                string word = words[iW];
-                if (string.IsNullOrWhiteSpace(word) || word.Length < prevLetterPosition)
+        
+                if (word.Length < prevLetterPosition)
                 {
-                    continue;
+                    return word;
                 }
                 string head = word.Substring(0, missingLetterPosition - 1);
                 string middle = missingFillerChar;
                 string tail = (word.Length > prevLetterPosition)
                     ? word.Substring(prevLetterPosition)
                     : "";
-                words[iW] = head + middle + tail;
-            }
-            segments[iS] = setWords(words, segment);
-        }
-        return setSegments(segments, untext);
+                return head + middle + tail;
     }
 }

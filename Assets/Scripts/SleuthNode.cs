@@ -28,7 +28,7 @@ public class SleuthNode
     public SleuthNode(string input, Obfuscator obfuscator)
         : this(input)
     {
-        this.output = obfuscator.unobfuscate(this.input);
+        this.output = obfuscator.Unobfuscate(this.input);
         this.currentState = this.output;
     }
 
