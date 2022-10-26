@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName ="MissingFirstLetter", menuName = "Obfuscator/MissingFirstLetter")]
 public class MissingThirdLetter : Obfuscator
 {
     public string missingFillerChar = "?";

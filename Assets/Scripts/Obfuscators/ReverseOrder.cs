@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "ReverseOrder", menuName = "Obfuscator/ReverseOrder")]
 public class ReverseOrder : Obfuscator
 {
     public override string obfuscate(string text)

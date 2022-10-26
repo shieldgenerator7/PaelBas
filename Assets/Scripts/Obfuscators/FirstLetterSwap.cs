@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "FirstLetterSwap", menuName = "Obfuscator/FirstLetterSwap")]
 public class FirstLetterSwap : Obfuscator
 {
     public override string obfuscate(string text)
