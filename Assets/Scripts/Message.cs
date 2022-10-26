@@ -19,15 +19,10 @@ public class Message : ScriptableObject
 
     public List<Obfuscator> obfuscators;
 
-    public SleuthTree SleuthTree { get; private set; }
-
     // Start is called before the first frame update
     public void init()
     {
         generateUntext();
-
-        //SleuthNode Tree
-        SleuthTree = new SleuthTree(Untext);
     }
 
     public string generateUntext()

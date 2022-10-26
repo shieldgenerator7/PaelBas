@@ -29,11 +29,12 @@ public class PlayerController : MonoBehaviour
             //Save prev message
             if (messageIndex >= 0)
             {
-                CurrentMessage.SleuthTree.saveText(Text);
+                sleuthTree.saveText(Text);
             }
             //Switch to new message
             messageIndex = Mathf.Clamp(value, 0, messages.Count - 1);
-            Text = messages[messageIndex].SleuthTree.Text;
+            sleuthTree = SleuthManager.instance.getTree(messages[messageIndex]);
+            Text = sleuthTree.Text;
             messageSwitched?.Invoke(CurrentMessage);
         }
     }
@@ -43,6 +44,8 @@ public class PlayerController : MonoBehaviour
         get => messages[MessageIndex];
         set => MessageIndex = messages.IndexOf(value);
     }
+
+    private SleuthTree sleuthTree;
 
     public TMP_InputField txtMessage;
 
@@ -63,17 +66,15 @@ public class PlayerController : MonoBehaviour
 
     public void pushObfuscator(Obfuscator obf)
     {
-        SleuthTree tree = CurrentMessage.SleuthTree;
-        tree.saveText(Text);
-        Text = tree.pushObfuscator(obf);
+        sleuthTree.saveText(Text);
+        Text = sleuthTree.pushObfuscator(obf);
         obfuscatorPushed?.Invoke(obf);
     }
 
     public void popObfuscator()
     {
-        SleuthTree tree = CurrentMessage.SleuthTree;
-        tree.saveText(Text);
-        Text = tree.popObfuscator();
+        sleuthTree.saveText(Text);
+        Text = sleuthTree.popObfuscator();
         obfuscatorPopped?.Invoke();
     }
 
