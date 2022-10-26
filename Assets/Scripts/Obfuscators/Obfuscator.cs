@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public abstract class Obfuscator : MonoBehaviour
 {
-    public static List<char> segmentDelimiters = new List<char>()
+    private static char[] segmentDelimiters = new char[]
     {
         '.',
         '?',
@@ -12,7 +13,7 @@ public abstract class Obfuscator : MonoBehaviour
         '\n',
         '\r'
     };
-    public static List<char> wordDelimiters = new List<char>()
+    private static char[] wordDelimiters = new char[]
     {
         '.',
         '?',
@@ -29,12 +30,12 @@ public abstract class Obfuscator : MonoBehaviour
 
     public string[] getSegments(string text)
     {
-        return text.Split(segmentDelimiters.ToArray());
+        return text.Split(segmentDelimiters);
     }
     
     public string[] getWords(string text)
     {
-        return text.Split(' ', ',');
+        return text.Split(wordDelimiters);
     }
 
     /// <summary>
