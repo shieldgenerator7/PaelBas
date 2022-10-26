@@ -11,22 +11,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MessageManager.instance.onMessageSwitched += (msg) =>
-        {
-            txtMessage.text = SleuthManager.instance.getTree(msg).Text;
-        };
-        SleuthManager.instance.onObfuscatorPushed += (obf) =>
-        {
-            txtMessage.text = SleuthManager.instance.getTree(
-                MessageManager.instance.CurrentMessage
-                ).Text;
-        };
-        SleuthManager.instance.onObfuscatorPopped += () =>
-        {
-            txtMessage.text = SleuthManager.instance.getTree(
-                MessageManager.instance.CurrentMessage
-                ).Text;
-        };
+        MessageManager.instance.onMessageSwitched += (msg) => updateText();
+        MessageManager.instance.onObfuscatorPushed += (obf) => updateText();
+        MessageManager.instance.onObfuscatorPopped += updateText;
         txtMessage.ActivateInputField();
     }
 
@@ -37,7 +24,11 @@ public class PlayerController : MonoBehaviour
 
     public void saveText(string text)
     {
-        SleuthManager.instance.saveText(text);
+        MessageManager.instance.Text = text;
+    }
+    public void updateText()
+    {
+        txtMessage.text = MessageManager.instance.Text;
     }
 
 

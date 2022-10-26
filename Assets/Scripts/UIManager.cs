@@ -19,8 +19,8 @@ public class UIManager : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
         //Player delegates
-        SleuthManager.instance.onObfuscatorPushed += pushObfuscator;
-        SleuthManager.instance.onObfuscatorPopped += popObfuscator;
+        MessageManager.instance.onObfuscatorPushed += pushObfuscator;
+        MessageManager.instance.onObfuscatorPopped += popObfuscator;
         MessageManager.instance.onMessageSwitched += switchMessage;
     }
 

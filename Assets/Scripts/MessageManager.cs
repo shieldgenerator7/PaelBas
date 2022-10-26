@@ -6,8 +6,11 @@ public class MessageManager : MonoBehaviour
 {
     public static MessageManager instance;
 
+    [SerializeField]
+    private MessagePuzzleData data;
+
     private int messageIndex = 0;
-   
+    private SleuthTree sleuthTree;
 
     public int MessageIndex
     {
@@ -15,7 +18,8 @@ public class MessageManager : MonoBehaviour
         set
         {
             //Switch to new message
-            messageIndex = Mathf.Clamp(value, 0, messages.Count - 1);
+            messageIndex = Mathf.Clamp(value, 0, data.messages.Count - 1);
+            sleuthTree = data.getTree(data.messages[messageIndex]);
             onMessageSwitched?.Invoke(CurrentMessage);
         }
     }
@@ -24,8 +28,14 @@ public class MessageManager : MonoBehaviour
 
     public Message CurrentMessage
     {
-        get => messages[MessageIndex];
-        set => MessageIndex = messages.IndexOf(value);
+        get => data.messages[MessageIndex];
+        set => MessageIndex = data.messages.IndexOf(value);
+    }
+
+    public string Text
+    {
+        get => sleuthTree.Text;
+        set => sleuthTree.saveText(value);
     }
 
     // Start is called before the first frame update
@@ -33,8 +43,25 @@ public class MessageManager : MonoBehaviour
     {
         instance = this;
         //Init messages
-        messages.ForEach(msg => msg.init());
+        data.messages.ForEach(msg => msg.init());
         //Init text
         MessageIndex = 0;
     }
+
+    public void pushObfuscator(Obfuscator obf)
+    {
+        sleuthTree.pushObfuscator(obf);
+        onObfuscatorPushed?.Invoke(obf);
+    }
+    public delegate void ObfuscatorPushed(Obfuscator obf);
+    public ObfuscatorPushed onObfuscatorPushed;
+
+    public void popObfuscator()
+    {
+        sleuthTree.popObfuscator();
+        onObfuscatorPopped?.Invoke();
+    }
+    public delegate void ObfuscatorPopped();
+    public ObfuscatorPopped onObfuscatorPopped;
+
 }
