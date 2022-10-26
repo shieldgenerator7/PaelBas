@@ -12,10 +12,8 @@ public class SleuthNode
     string output;//the text directly after this node processes
     public string currentState;//the text after further user input
 
-    Obfuscator obfuscator;
-
     public SleuthNode parent { get; private set; }
-    private List<SleuthNode> children;
+    private Dictionary<Obfuscator, SleuthNode> children;
 
     public SleuthNode(string input)
     {
@@ -24,14 +22,13 @@ public class SleuthNode
         this.currentState = input;
 
         this.parent = null;
-        this.children = new List<SleuthNode>();
+        this.children = new Dictionary<Obfuscator, SleuthNode>();
     }
 
     public SleuthNode(string input, Obfuscator obfuscator)
         : this(input)
     {
-        this.obfuscator = obfuscator;
-        this.output = this.obfuscator.unobfuscate(this.input);
+        this.output = obfuscator.unobfuscate(this.input);
         this.currentState = this.output;
     }
 
@@ -47,37 +44,40 @@ public class SleuthNode
 
     public SleuthNode addChild(Obfuscator obf)
     {
-        SleuthNode foundChild = null;
-        foreach(SleuthNode child in children)
+        //If child exists for the given obfuscator,
+        if (children.ContainsKey(obf))
         {
-            if (child.obfuscator.GetType() == obf.GetType()
-                && child.input == currentState) {
-                foundChild = child;
-                break;
+            //And nothing has changed at this node since it was added,
+            SleuthNode foundChild = children[obf];
+            if (currentState == foundChild.input)
+            {
+                //Return the existing child
+                return foundChild;
             }
         }
-        if (foundChild)
-        {
-            return foundChild;
-        }
-        else
-        {
-            SleuthNode newChild = new SleuthNode(currentState, obf);
-            this.link(newChild);
-            return newChild;
-        }
+        //Else create a new child
+        //(if one doesnt already exist, or one exists but is outdated)
+        SleuthNode newChild = new SleuthNode(currentState, obf);
+        this.link(obf, newChild);
+        return newChild;
     }
 
     /// <summary>
     /// Call like this:   parent.link(newChild);
     /// </summary>
     /// <param name="sleuthNode"></param>
-    private void link(SleuthNode sleuthNode)
+    private void link(Obfuscator obf, SleuthNode sleuthNode)
     {
-        this.children.Add(sleuthNode);
+        //Remove old one if it exists
+        if (this.children.ContainsKey(obf))
+        {
+            this.children.Remove(obf);
+        }
+        //Add this one
+        this.children.Add(obf, sleuthNode);
         sleuthNode.parent = this;
     }
 
-    public static implicit operator bool (SleuthNode s)
+    public static implicit operator bool(SleuthNode s)
         => s != null;
 }
