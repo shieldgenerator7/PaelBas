@@ -17,9 +17,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public Obfuscator nextFilter;
-    public bool pop;
-
     [SerializeField]
     private int messageIndex = 0;
     [SerializeField]
@@ -64,21 +61,6 @@ public class PlayerController : MonoBehaviour
         Text = messages[messageIndex].Untext;
         MessageIndex = 0;
         txtMessage.ActivateInputField();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (nextFilter != null)
-        {
-            pushObfuscator(nextFilter);
-            nextFilter = null;
-        }
-        if (pop)
-        {
-            popObfuscator();
-            pop = false;
-        }
     }
 
     public void adjustMessageIndex(int addend)

@@ -428,8 +428,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8c8779b613eff4dadf70bba3ce6788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextFilter: {fileID: 0}
-  pop: 0
   messageIndex: 0
   messages:
   - {fileID: 11400000, guid: 6af49dfa3a423fb41a45d1cb3fbbe83f, type: 2}
