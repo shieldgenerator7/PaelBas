@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MissingThirdLetter : Obfuscator
 {
+    public string missingFillerChar = "?";
+
     public override string obfuscate(string text)
     {
         string[] segments = getSegments(text);
@@ -51,7 +53,7 @@ public class MissingThirdLetter : Obfuscator
                     continue;
                 }
                 string head = "" + word[0] + word[1];
-                string middle = "?";
+                string middle = missingFillerChar;
                 string tail = (word.Length > 2)
                     ? word.Substring(2)
                     : "";
