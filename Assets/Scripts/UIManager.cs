@@ -6,6 +6,8 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public GameObject uiElementTemplate;
+    public Vector3 startPos;
+    public float bufferSpace = 10;
 
     private List<GameObject> uiElementList = new List<GameObject>();
     private List<string> names = new List<string>();
@@ -43,6 +45,7 @@ public class UIManager : MonoBehaviour
             Destroy(uiElement);
         }
         uiElementList = new List<GameObject>();
+        Vector3 nextpos = startPos;
         //Add new UI components
         foreach (string name in names)
         {
@@ -51,6 +54,9 @@ public class UIManager : MonoBehaviour
             TextMeshProUGUI tmpugui = newUIElement.GetComponent<TextMeshProUGUI>();
             tmpugui.text = name;
             uiElementList.Add(newUIElement);
+            RectTransform rect = newUIElement.GetComponent<RectTransform>();
+            rect.anchoredPosition = nextpos;
+            nextpos.y += -bufferSpace;
         }
     }
 
