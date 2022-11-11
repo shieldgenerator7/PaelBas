@@ -969,7 +969,7 @@ PrefabInstance:
     - target: {fileID: 4327696644659207737, guid: 06192e3e0dfe82f4fb2540360a984576,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -138.8
+      value: -140.69998
       objectReference: {fileID: 0}
     - target: {fileID: 4327696644659207737, guid: 06192e3e0dfe82f4fb2540360a984576,
         type: 3}
@@ -2311,8 +2311,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiElementTemplate: {fileID: 4801429629669331544, guid: af38e8e5cc276a24d8b2c797f8c5a30a,
     type: 3}
-  startPos: {x: 483, y: -130, z: 0}
-  bufferSpace: 30
+  startPos: {x: 475, y: -170, z: 0}
+  bufferSpace: -20
 --- !u!1 &1868088249
 GameObject:
   m_ObjectHideFlags: 0
@@ -2554,7 +2554,7 @@ PrefabInstance:
     - target: {fileID: 4327696644659207737, guid: 06192e3e0dfe82f4fb2540360a984576,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -231
+      value: -236.6
       objectReference: {fileID: 0}
     - target: {fileID: 4327696644659207737, guid: 06192e3e0dfe82f4fb2540360a984576,
         type: 3}
