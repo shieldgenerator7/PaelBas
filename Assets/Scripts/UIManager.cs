@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
             GameObject newUIElement = Instantiate(uiElementTemplate);
             newUIElement.transform.SetParent(canvas.transform, false);
             TextMeshProUGUI tmpugui = newUIElement.GetComponent<TextMeshProUGUI>();
-            tmpugui.text = name;
+            tmpugui.text = $"-{name}";
             uiElementList.Add(newUIElement);
             RectTransform rect = newUIElement.GetComponent<RectTransform>();
             rect.anchoredPosition = nextpos;
