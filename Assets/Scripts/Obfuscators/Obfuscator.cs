@@ -24,7 +24,7 @@ public abstract class Obfuscator : ScriptableObject
     private static char[] segmentDelimiters = new char[]
     {
         '.',
-        '?',
+        //'?',
         '!',
         '\n',
         '\r'
@@ -32,7 +32,7 @@ public abstract class Obfuscator : ScriptableObject
     private static char[] wordDelimiters = new char[]
     {
         '.',
-        '?',
+        //'?',
         '!',
         '\n',
         '\r',
