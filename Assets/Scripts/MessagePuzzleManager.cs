@@ -6,6 +6,9 @@ public class MessagePuzzleManager : MonoBehaviour
 {
     public static MessagePuzzleManager instance;
 
+    [Tooltip("The max amount of obfuscator levels per message")]
+    public int maxObfuscatorLayers = 3;
+
     public List<Message> messages = new List<Message>();
 
     private MessagePuzzleData data = new MessagePuzzleData();
@@ -43,8 +46,11 @@ public class MessagePuzzleManager : MonoBehaviour
 
     public void pushObfuscator(Obfuscator obf)
     {
-        messagePuzzle.sleuthTree.pushObfuscator(obf);
-        onObfuscatorPushed?.Invoke(obf);
+        if (messagePuzzle.sleuthTree.LayerCount < maxObfuscatorLayers)
+        {
+            messagePuzzle.sleuthTree.pushObfuscator(obf);
+            onObfuscatorPushed?.Invoke(obf);
+        }
     }
     public delegate void ObfuscatorPushed(Obfuscator obf);
     public ObfuscatorPushed onObfuscatorPushed;

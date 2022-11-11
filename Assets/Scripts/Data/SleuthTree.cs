@@ -35,6 +35,24 @@ public class SleuthTree
         return sleuthNode.currentState;
     }
 
+    public int LayerCount
+    {
+        get
+        {
+            int count = 0;
+            SleuthNode node = sleuthNode;
+            while (node)
+            {
+                if (node.Obfuscator)
+                {
+                    count++;
+                }
+                node = node.parent;
+            }
+            return count;
+        }
+    }
+
     public List<Obfuscator> ObfuscatorTrail
     {
         get
