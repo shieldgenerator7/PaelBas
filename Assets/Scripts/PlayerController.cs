@@ -29,17 +29,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //2022-11-11: copied from https://stackoverflow.com/a/57691490/2336212
-            var charIndex = TMP_TextUtilities.FindIntersectingCharacter(lblMessage, Input.mousePosition, Camera.main, false);
+            var charIndex = TMP_TextUtilities.GetCursorIndexFromPosition(lblMessage, Input.mousePosition, Camera.main);
 
             //Debug.Log($"charIndex: {charIndex}");
             if (charIndex != -1)
             {
-                char clickedChar = lblMessage.textInfo.characterInfo[charIndex].character;
-                if (clickedChar == '?' || clickedChar == '_')
-                {
-                    txtMessage.selectionAnchorPosition = charIndex;
-                    txtMessage.selectionFocusPosition = charIndex + 1;
-                }
+                txtMessage.selectionAnchorPosition = charIndex;
+                txtMessage.selectionFocusPosition = charIndex + 1;
             }
         }
         if (Input.GetKeyUp(KeyCode.Tab))
