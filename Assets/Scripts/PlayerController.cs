@@ -4,9 +4,12 @@ using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
-{  
+{
 
+    public GameObject notebook;
     public TMP_InputField txtMessage;
+
+    private bool showNotebook = true;
 
     private TMP_Text lblMessage;
 
@@ -38,6 +41,11 @@ public class PlayerController : MonoBehaviour
                     txtMessage.selectionFocusPosition = charIndex + 1;
                 }
             }
+        }
+        if (Input.GetKeyUp(KeyCode.Tab))
+        {
+            showNotebook = !showNotebook;
+            notebook.SetActive(showNotebook);
         }
     }
 

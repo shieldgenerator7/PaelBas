@@ -210,6 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8c8779b613eff4dadf70bba3ce6788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  notebook: {fileID: 1698637916}
   txtMessage: {fileID: 1208851747}
 --- !u!4 &623562337
 Transform:
@@ -483,6 +484,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1698637916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4493430622253691924, guid: 868b44aca397fb4478889fa568d7df9f,
+    type: 3}
+  m_PrefabInstance: {fileID: 4493430620595428424}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4493430620595428424
 PrefabInstance:
   m_ObjectHideFlags: 0
