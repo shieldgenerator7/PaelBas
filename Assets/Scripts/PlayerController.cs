@@ -51,10 +51,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (showNotebook && Input.GetMouseButtonDown(0))
         {
             //2022-11-11: copied from https://stackoverflow.com/a/57691490/2336212
-            var charIndex = TMP_TextUtilities.GetCursorIndexFromPosition(lblMessage, Input.mousePosition, Camera.main);
+            var charIndex = TMP_TextUtilities.GetCursorIndexFromPosition(lblMessage, Input.mousePosition, camera);
 
             //Debug.Log($"charIndex: {charIndex}");
             if (charIndex != -1)
