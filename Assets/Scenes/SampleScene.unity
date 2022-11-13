@@ -625,6 +625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 7
   lookSpeed: 100
+  jumpHeight: 3
   gravityY: -9.81
   groundDistance: 0.4
   groundMask:

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [Header("Settings")]
     public float moveSpeed = 3;
     public float lookSpeed = 100;
+    public float jumpHeight = 3f;
     public float gravityY = -9.81f;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     private float rotationX = 0f;
     private float velocityY = 0f;
+    private bool isGrounded = true;
 
     // Start is called before the first frame update
     void Start()
@@ -85,6 +87,7 @@ public class PlayerController : MonoBehaviour
         if (!showNotebook)
         {
             moveAndLook();
+            jump();
         }
     }
 
@@ -134,7 +137,7 @@ public class PlayerController : MonoBehaviour
     {
         velocityY += gravityY * Time.deltaTime;
 
-        bool isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         if (isGrounded && velocityY < 0)
         {
             velocityY = -2f;
@@ -142,5 +145,15 @@ public class PlayerController : MonoBehaviour
 
         characterController.Move(Vector3.up * velocityY * Time.deltaTime);
     }
+
+    public void jump()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocityY = Mathf.Sqrt(jumpHeight * -2f * gravityY);
+            characterController.Move(Vector3.up * velocityY * Time.deltaTime);
+        }
+    }
+
 
 }
