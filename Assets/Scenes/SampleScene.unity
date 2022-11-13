@@ -2994,8 +2994,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4493430621535306091, guid: 868b44aca397fb4478889fa568d7df9f,
         type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4493430621535306091, guid: 868b44aca397fb4478889fa568d7df9f,
+        type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1130404192}
+    - target: {fileID: 4493430621535306091, guid: 868b44aca397fb4478889fa568d7df9f,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: saveText
       objectReference: {fileID: 0}
     - target: {fileID: 4493430621710754216, guid: 868b44aca397fb4478889fa568d7df9f,
         type: 3}
