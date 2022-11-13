@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     [Header("Settings")]
     public float moveSpeed = 3;
     public float lookSpeed = 100;
+    public float gravityY = -9.81f;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
 
     [Header("Components")]
     public CharacterController characterController;
@@ -16,12 +19,14 @@ public class PlayerController : MonoBehaviour
     public GameObject notebook;
     public TMP_InputField txtMessage;
     public EventSystem eventSystem;
+    public Transform groundCheck;
 
     private bool showNotebook = true;
 
     private TMP_Text lblMessage;
-    
+
     private float rotationX = 0f;
+    private float velocityY = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +79,8 @@ public class PlayerController : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
             }
         }
+        //Gravity
+        applyGravity();
         //FPS Controls
         if (!showNotebook)
         {
@@ -123,5 +130,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void applyGravity()
+    {
+        velocityY += gravityY * Time.deltaTime;
+
+        bool isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        if (isGrounded && velocityY < 0)
+        {
+            velocityY = -2f;
+        }
+
+        characterController.Move(Vector3.up * velocityY * Time.deltaTime);
+    }
 
 }
