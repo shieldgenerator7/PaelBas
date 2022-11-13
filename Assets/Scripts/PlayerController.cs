@@ -6,7 +6,13 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Settings")]
+    public float moveSpeed = 3;
+    public float lookSpeed = 100;
 
+    [Header("Components")]
+    public CharacterController characterController;
+    public Camera camera;
     public GameObject notebook;
     public TMP_InputField txtMessage;
     public EventSystem eventSystem;
@@ -14,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private bool showNotebook = true;
 
     private TMP_Text lblMessage;
+    
+    private float rotationX = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -57,12 +65,19 @@ public class PlayerController : MonoBehaviour
             {
                 txtMessage.ActivateInputField();
                 eventSystem.SetSelectedGameObject(txtMessage.gameObject);
+                Cursor.lockState = CursorLockMode.None;
             }
             else
             {
                 txtMessage.DeactivateInputField();
                 eventSystem.SetSelectedGameObject(null);
+                Cursor.lockState = CursorLockMode.Locked;
             }
+        }
+        //FPS Controls
+        if (!showNotebook)
+        {
+            moveAndLook();
         }
     }
 
@@ -78,6 +93,34 @@ public class PlayerController : MonoBehaviour
     public void updateText()
     {
         txtMessage.text = MessagePuzzleManager.instance.Text;
+    }
+
+    public void moveAndLook()
+    {
+        //2022-11-12: made with help from https://youtu.be/_QajrabyTJc
+
+        //Move
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        if (horizontal != 0 || vertical != 0)
+        {
+            Vector3 moveDir = transform.forward * vertical + transform.right * horizontal;
+            characterController.Move(moveDir * moveSpeed * Time.deltaTime);
+        }
+
+        //Look
+        float mouseX = Input.GetAxisRaw("Mouse X");
+        float mouseY = Input.GetAxisRaw("Mouse Y");
+        if (mouseX != 0)
+        {
+            transform.Rotate(Vector3.up * mouseX * lookSpeed * Time.deltaTime);
+        }
+        if (mouseY != 0)
+        {
+            rotationX -= mouseY * lookSpeed * Time.deltaTime;
+            rotationX = Mathf.Clamp(rotationX, -90f, 90f);
+            camera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        }
     }
 
 
