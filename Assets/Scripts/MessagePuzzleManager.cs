@@ -13,7 +13,7 @@ public class MessagePuzzleManager : MonoBehaviour
 
     private MessagePuzzleData data = new MessagePuzzleData();
 
-    private int messageIndex = 0;
+    private int messageIndex = -1;
     private MessagePuzzle messagePuzzle;
 
     public int MessageIndex
@@ -21,6 +21,11 @@ public class MessagePuzzleManager : MonoBehaviour
         get => messageIndex;
         set
         {
+            if (messages.Count == 0)
+            {
+                messageIndex = -1;
+                return;
+            }
             //Switch to new message
             messageIndex = Mathf.Clamp(value, 0, messages.Count - 1);
             messagePuzzle = data.getMessagePuzzle(messages[messageIndex]);
@@ -62,5 +67,14 @@ public class MessagePuzzleManager : MonoBehaviour
     }
     public delegate void ObfuscatorPopped();
     public ObfuscatorPopped onObfuscatorPopped;
+
+    public void addMessage(Message message)
+    {
+        if (!messages.Contains(message))
+        {
+            messages.Add(message);
+        }
+        MessageIndex = messages.IndexOf(message);
+    }
 
 }
