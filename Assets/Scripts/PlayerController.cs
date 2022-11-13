@@ -22,6 +22,14 @@ public class PlayerController : MonoBehaviour
         txtMessage.ActivateInputField();
         lblMessage = txtMessage.GetComponentInChildren<TMP_Text>();
         updateText();
+        txtMessage.onValidateInput += (txt, index, chr) =>
+        {
+            if (chr == '\t')
+            {
+                throw new System.ArgumentException("Tab character not allowed");
+            }
+            return chr;
+        };
     }
 
     private void Update()
