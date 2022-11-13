@@ -16,13 +16,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Components")]
     public CharacterController characterController;
-    public Camera camera;
+    public new Camera camera;
     public GameObject notebook;
     public TMP_InputField txtMessage;
     public EventSystem eventSystem;
     public Transform groundCheck;
 
-    private bool showNotebook = true;
+    private bool showNotebook = false;
 
     private TMP_Text lblMessage;
 
@@ -36,9 +36,6 @@ public class PlayerController : MonoBehaviour
         MessagePuzzleManager.instance.onMessageSwitched += (msg) => updateText();
         MessagePuzzleManager.instance.onObfuscatorPushed += (obf) => updateText();
         MessagePuzzleManager.instance.onObfuscatorPopped += updateText;
-        txtMessage.ActivateInputField();
-        lblMessage = txtMessage.GetComponentInChildren<TMP_Text>();
-        updateText();
         txtMessage.onValidateInput += (txt, index, chr) =>
         {
             if (chr == '\t')
@@ -47,6 +44,9 @@ public class PlayerController : MonoBehaviour
             }
             return chr;
         };
+        lblMessage = txtMessage.GetComponentInChildren<TMP_Text>();
+        updateText();
+        ShowNotebook(showNotebook);
     }
 
     private void Update()
@@ -66,20 +66,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Tab))
         {
             showNotebook = !showNotebook;
-            notebook.SetActive(showNotebook);
-            txtMessage.enabled = showNotebook;
-            if (showNotebook)
-            {
-                txtMessage.ActivateInputField();
-                eventSystem.SetSelectedGameObject(txtMessage.gameObject);
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                txtMessage.DeactivateInputField();
-                eventSystem.SetSelectedGameObject(null);
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+            ShowNotebook(showNotebook);
         }
         //Gravity
         applyGravity();
@@ -88,6 +75,24 @@ public class PlayerController : MonoBehaviour
         {
             moveAndLook();
             jump();
+        }
+    }
+
+    public void ShowNotebook(bool show)
+    {
+        notebook.SetActive(showNotebook);
+        txtMessage.enabled = showNotebook;
+        if (showNotebook)
+        {
+            txtMessage.ActivateInputField();
+            eventSystem.SetSelectedGameObject(txtMessage.gameObject);
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            txtMessage.DeactivateInputField();
+            eventSystem.SetSelectedGameObject(null);
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 

@@ -1039,6 +1039,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Notebook Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4493430622253691924, guid: 868b44aca397fb4478889fa568d7df9f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4493430622253691926, guid: 868b44aca397fb4478889fa568d7df9f,
         type: 3}
       propertyPath: m_PresetInfoIsWorld
