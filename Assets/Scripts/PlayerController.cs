@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         {
             if (chr == '\t')
             {
-                throw new System.ArgumentException("Tab character not allowed");
+                return '\0';
             }
             return chr;
         };
