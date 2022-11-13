@@ -11,7 +11,7 @@ public class MessageChecker : MonoBehaviour
 
     private void Start()
     {
-        lblMessage.text = message.Text;
+        lblMessage.text = message.Untext;
     }
 
     private void OnTriggerEnter(Collider collision)
