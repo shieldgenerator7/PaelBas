@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
 
     public GameObject notebook;
     public TMP_InputField txtMessage;
+    public EventSystem eventSystem;
 
     private bool showNotebook = true;
 
@@ -50,6 +52,17 @@ public class PlayerController : MonoBehaviour
         {
             showNotebook = !showNotebook;
             notebook.SetActive(showNotebook);
+            txtMessage.enabled = showNotebook;
+            if (showNotebook)
+            {
+                txtMessage.ActivateInputField();
+                eventSystem.SetSelectedGameObject(txtMessage.gameObject);
+            }
+            else
+            {
+                txtMessage.DeactivateInputField();
+                eventSystem.SetSelectedGameObject(null);
+            }
         }
     }
 
