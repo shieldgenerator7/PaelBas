@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public CharacterController characterController;
     public new Camera camera;
     public GameObject notebook;
+    public Transform positionOpen;
+    public Transform positionClosed;
     public TMP_InputField txtMessage;
     public EventSystem eventSystem;
     public Transform groundCheck;
@@ -80,8 +82,7 @@ public class PlayerController : MonoBehaviour
 
     public void ShowNotebook(bool show)
     {
-        notebook.SetActive(showNotebook);
-        txtMessage.enabled = showNotebook;
+        notebook.transform.position = ((show) ? positionOpen : positionClosed).position;
         if (showNotebook)
         {
             txtMessage.ActivateInputField();
