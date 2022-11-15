@@ -32,8 +32,8 @@ public class MessagePuzzleManager : MonoBehaviour
             onMessageSwitched?.Invoke(messagePuzzle);
         }
     }
-    public delegate void MessageSwitched(MessagePuzzle m);
-    public MessageSwitched onMessageSwitched;
+    public delegate void OnMessagePuzzle(MessagePuzzle m);
+    public OnMessagePuzzle onMessageSwitched;
 
     public string Text
     {
@@ -73,8 +73,19 @@ public class MessagePuzzleManager : MonoBehaviour
         if (!messages.Contains(message))
         {
             messages.Add(message);
+            onMessageAdded?.Invoke(data.getMessagePuzzle(message));
         }
         MessageIndex = messages.IndexOf(message);
+    }
+    public OnMessagePuzzle onMessageAdded;
+
+    public string getMessageText(Message message)
+    {
+        return data.getMessagePuzzle(message).sleuthTree.Text;
+    }
+    public MessagePuzzle getMessagePuzzle(Message message)
+    {
+        return data.getMessagePuzzle(message);
     }
 
 }

@@ -21,17 +21,22 @@ public class SleuthTree
     public void saveText(string currentText)
     {
         sleuthNode.saveText(currentText);
+        onSolutionChanged?.Invoke(sleuthNode.currentState);
     }
 
     public string pushObfuscator(Obfuscator obf)
     {
         sleuthNode = sleuthNode.addChild(obf);
+        onSolutionChanged?.Invoke(sleuthNode.currentState);
         return sleuthNode.currentState;
     }
+    public delegate void OnSolutionChanged(string text);
+    public event OnSolutionChanged onSolutionChanged;
 
     public string popObfuscator()
     {
         sleuthNode = sleuthNode.parent ?? sleuthNode;
+        onSolutionChanged?.Invoke(sleuthNode.currentState);
         return sleuthNode.currentState;
     }
 

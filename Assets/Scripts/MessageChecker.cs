@@ -11,7 +11,43 @@ public class MessageChecker : MonoBehaviour
 
     private void Start()
     {
-        lblMessage.text = message.Untext;
+        lblMessage.text = MessagePuzzleManager.instance.getMessageText(message);
+    }
+
+    private void OnEnable()
+    {
+        MessagePuzzle mp = MessagePuzzleManager.instance.getMessagePuzzle(message);
+        if (mp != null)
+        {
+            mp.sleuthTree.onSolutionChanged += updateSign;
+        }
+        else
+        {
+            MessagePuzzleManager.instance.onMessageSwitched += registerSign;
+        }
+    }
+
+    private void OnDisable()
+    {
+        MessagePuzzle mp = MessagePuzzleManager.instance.getMessagePuzzle(message);
+        if (mp != null)
+        {
+            mp.sleuthTree.onSolutionChanged -= updateSign;
+        }
+        MessagePuzzleManager.instance.onMessageSwitched -= registerSign;
+    }
+
+    private void updateSign(string text)
+    {
+        lblMessage.text = text;
+    }
+    private void registerSign(MessagePuzzle mp)
+    {
+        if (mp.message == this.message)
+        {
+            mp.sleuthTree.onSolutionChanged += updateSign;
+            MessagePuzzleManager.instance.onMessageSwitched -= registerSign;
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
