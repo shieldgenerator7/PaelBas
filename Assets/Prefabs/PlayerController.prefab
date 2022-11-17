@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
-  sprintMoveSpeed: 14
+  sprintMoveSpeed: 35
   lookSpeed: 100
   jumpHeight: 3
   gravityY: -9.81

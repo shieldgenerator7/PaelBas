@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13a273ebba6d6604dac82b373dfb0f31, type: 3}
-  m_Name: MSG Pal 4
+  m_Name: MSG DEMO END
   m_EditorClassIdentifier: 
-  text: PAUL'S HOSE
+  text: This is the end of the demo. Thanks for playing!
   obfuscators:
+  - {fileID: 11400000, guid: 3502cfd97cf297544b9801543e39b610, type: 2}
+  - {fileID: 11400000, guid: 39a2395290cc67144ad7ae7cbad0d3af, type: 2}
   - {fileID: 11400000, guid: c6a7563d7bef3fd49b9537c4c7c113e2, type: 2}
