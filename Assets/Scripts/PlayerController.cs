@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Settings")]
     public float moveSpeed = 3;
+    public float sprintMoveSpeed = 7;
     public float lookSpeed = 100;
     public float jumpHeight = 3f;
     public float gravityY = -9.81f;
@@ -115,13 +116,17 @@ public class PlayerController : MonoBehaviour
     {
         //2022-11-12: made with help from https://youtu.be/_QajrabyTJc
 
+        //Sprint
+        bool sprinting = Input.GetButton("Sprint");
+        float speed = (sprinting) ? sprintMoveSpeed : moveSpeed;
+
         //Move
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         if (horizontal != 0 || vertical != 0)
         {
             Vector3 moveDir = transform.forward * vertical + transform.right * horizontal;
-            characterController.Move(moveDir * moveSpeed * Time.deltaTime);
+            characterController.Move(moveDir * speed * Time.deltaTime);
         }
 
         //Look
