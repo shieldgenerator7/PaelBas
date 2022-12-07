@@ -1,0 +1,12 @@
+PAL - missing third letter
+LALLY SEE - spoonerism
+OTREBOR - reverse order
+WIND ARE - shift spaces to the right
+DBFTBS - caesar cypher
+beqqla poh - "upside-down" letters
+ON ISLE HE HIEF RATT - steal first letter and make new word
+AZY LIVE LO
+HETNUR - reverse order, except first and last letter
+RTREBOO
+SLAER - middle letter goes to front
+STOWA AWAY - copies first letter of next word to end of word
