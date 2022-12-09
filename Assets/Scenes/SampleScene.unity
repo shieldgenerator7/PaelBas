@@ -8005,6 +8005,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 532165367}
+    - target: {fileID: 4682557829407067291, guid: 772e9a9885e3c204cbedec3066ca9def,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 48.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 772e9a9885e3c204cbedec3066ca9def, type: 3}
