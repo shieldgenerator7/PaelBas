@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     public GameObject uiElementTemplate;
     public Vector3 startPos;
     public float bufferSpace = 10;
+    public TMP_InputField txtNotebook;
 
     private List<GameObject> uiElementList = new List<GameObject>();
     private List<string> names = new List<string>();
@@ -60,6 +61,8 @@ public class UIManager : MonoBehaviour
             rect.anchoredPosition = nextpos;
             nextpos.y += -bufferSpace;
         }
+        //Focus textbox
+        txtNotebook.Select();
     }
 
     public void clear()
@@ -86,5 +89,7 @@ public class UIManager : MonoBehaviour
         names = mp.sleuthTree.ObfuscatorTrail
             .ConvertAll(obf => getObfuscatorName(obf));
         refresh();
+        //Focus textbox
+        txtNotebook.Select();
     }
 }

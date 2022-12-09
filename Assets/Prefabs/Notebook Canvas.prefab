@@ -1574,6 +1574,7 @@ MonoBehaviour:
     type: 3}
   startPos: {x: 475, y: -170, z: 0}
   bufferSpace: -20
+  txtNotebook: {fileID: 4493430621535306091}
 --- !u!1001 &167986122104457956
 PrefabInstance:
   m_ObjectHideFlags: 0
