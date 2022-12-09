@@ -179,6 +179,7 @@ MonoBehaviour:
   moveSpeed: 7
   sprintMoveSpeed: 35
   lookSpeed: 100
+  lookSpeedIncrement: 10
   jumpHeight: 3
   gravityY: -9.81
   groundDistance: 0.4

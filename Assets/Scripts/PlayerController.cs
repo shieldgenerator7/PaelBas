@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 3;
     public float sprintMoveSpeed = 7;
     public float lookSpeed = 100;
+    public float lookSpeedIncrement = 10;
     public float jumpHeight = 3f;
     public float gravityY = -9.81f;
     public float groundDistance = 0.4f;
@@ -76,6 +77,17 @@ public class PlayerController : MonoBehaviour
         //FPS Controls
         if (!showNotebook)
         {
+            //Mouse sensivity adjust
+            if (Input.GetKeyDown(KeyCode.Minus))
+            {
+                lookSpeed -= lookSpeedIncrement;
+            }
+            if (Input.GetKeyDown(KeyCode.Equals))
+            {
+                lookSpeed += lookSpeedIncrement;
+            }
+            lookSpeed = Mathf.Clamp(lookSpeed, 10, 200);
+            //Move
             moveAndLook();
             jump();
         }
