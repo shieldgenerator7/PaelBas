@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: FirstLetterSwap
   m_EditorClassIdentifier: 
   characterName: Sally Lee
+  swapCase: 0

@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ReverseOrder", menuName = "Obfuscator/ReverseOrder")]
 public class ReverseOrder : Obfuscator
 {
+    public bool swapCase = false;
+
     protected override ObfuscationScope Scope => ObfuscationScope.WORD;
 
     protected override string obfuscate(string word)
@@ -20,7 +22,10 @@ public class ReverseOrder : Obfuscator
         {
             char first = output[0];
             char last = output[output.Length - 1];
-            (first, last) = Utility.swapCase(first, last);
+            if (swapCase)
+            {
+                (first, last) = Utility.swapCase(first, last);
+            }
             output = first + output.Substring(1, output.Length - 2) + last;
         }
         //Return

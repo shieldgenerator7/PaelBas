@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ReverseOrder
   m_EditorClassIdentifier: 
   characterName: Roberto
+  swapCase: 0

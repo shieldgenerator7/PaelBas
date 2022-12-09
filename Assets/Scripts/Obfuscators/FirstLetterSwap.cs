@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FirstLetterSwap", menuName = "Obfuscator/FirstLetterSwap")]
 public class FirstLetterSwap : Obfuscator
 {
+    public bool swapCase = false;
+
     protected override ObfuscationScope Scope => ObfuscationScope.SEGMENT;
 
     protected override string obfuscate(string segment)
@@ -25,7 +27,7 @@ public class FirstLetterSwap : Obfuscator
             else
             {
                 string swapWord = words[swapIndex];
-                (word, swapWord) = swapFirstCharacter(word, swapWord);
+                (word, swapWord) = swapFirstCharacter(word, swapWord, swapCase);
                 words[iW] = word;
                 words[swapIndex] = swapWord;
                 swapIndex = -1;
@@ -41,13 +43,16 @@ public class FirstLetterSwap : Obfuscator
         return obfuscate(untext);
     }
 
-    private (string, string) swapFirstCharacter(string word1, string word2)
+    private (string, string) swapFirstCharacter(string word1, string word2, bool swapCase = false)
     {
         //Get the first letter
         char char1 = word1[0];
         char char2 = word2[0];
         //Swap case
-        (char1, char2) = Utility.swapCase(char1, char2);
+        if (swapCase)
+        {
+            (char1, char2) = Utility.swapCase(char1, char2);
+        }
         //Switch letters of words
         string newWord1 = char2 + word1.Substring(1);
         string newWord2 = char1 + word2.Substring(1);
