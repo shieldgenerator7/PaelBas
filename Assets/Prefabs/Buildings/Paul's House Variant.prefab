@@ -410,13 +410,13 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2195956413873260727, guid: 16fc6d84deded8e4c93d2c4995490db0,
         type: 3}
       propertyPath: m_Name
-      value: Paul's House
+      value: Paul's House Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4534620790267608123, guid: 16fc6d84deded8e4c93d2c4995490db0,
         type: 3}
@@ -474,6 +474,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4534620790267608123, guid: 16fc6d84deded8e4c93d2c4995490db0,
         type: 3}
@@ -483,6 +484,7 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 424634324}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16fc6d84deded8e4c93d2c4995490db0, type: 3}
 --- !u!4 &2710359127739582190 stripped
 Transform:
@@ -495,7 +497,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 424634324}
     m_Modifications:
     - target: {fileID: 5460461552246322761, guid: ec2ad86815019c345bb10c252b60d42f,
@@ -600,7 +602,9 @@ PrefabInstance:
       value: 12.09
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec2ad86815019c345bb10c252b60d42f, type: 3}
 --- !u!4 &4896495314571840184 stripped
 Transform:
@@ -613,7 +617,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 424634324}
     m_Modifications:
     - target: {fileID: 5460461552246322761, guid: ec2ad86815019c345bb10c252b60d42f,
@@ -713,7 +717,9 @@ PrefabInstance:
       value: 12.09
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec2ad86815019c345bb10c252b60d42f, type: 3}
 --- !u!4 &4896495315642272281 stripped
 Transform:
@@ -726,7 +732,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
+    serializedVersion: 3
     m_TransformParent: {fileID: 424634324}
     m_Modifications:
     - target: {fileID: 5460461552246322761, guid: ec2ad86815019c345bb10c252b60d42f,
@@ -825,7 +831,9 @@ PrefabInstance:
       value: 9.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec2ad86815019c345bb10c252b60d42f, type: 3}
 --- !u!4 &4896495314898465490 stripped
 Transform:
