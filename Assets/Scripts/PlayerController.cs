@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public float gravityY = -9.81f;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    [Tooltip("How much the scroll wheel changes the position percent of the notebook when closed")]
+    public float notebookVisibilityScrollAmount = 0.1f;
 
     [Header("Components")]
     public CharacterController characterController;
@@ -22,11 +24,26 @@ public class PlayerController : MonoBehaviour
     public GameObject notebook;
     public Transform positionOpen;
     public Transform positionClosed;
+    public Transform positionClosedVisible;
     public TMP_InputField txtMessage;
     public EventSystem eventSystem;
     public Transform groundCheck;
 
     private bool showNotebook = false;
+    private float notebookClosedPositionPercent = 0.0f;//0 = positionClosed; 1 = positionClosedVisible; (0.0-1.0) = position in between
+    public float NotebookVisibilityPercent
+    {
+        get => notebookClosedPositionPercent;
+        set
+        {
+            notebookClosedPositionPercent = Mathf.Clamp(value, 0.0f, 1.0f);
+            Debug.Log($"notebookClosedPositionPercent {notebookClosedPositionPercent}");
+            notebook.transform.position =
+                (positionClosedVisible.position - positionClosed.position)
+                * notebookClosedPositionPercent
+                + positionClosed.position;
+        }
+    }
 
     private TMP_Text lblMessage;
 
@@ -76,6 +93,12 @@ public class PlayerController : MonoBehaviour
         //FPS Controls
         if (!showNotebook)
         {
+            //Move notebook visibility
+            float mouseWheelDelta = Input.mouseScrollDelta.y;
+            if (mouseWheelDelta != 0)
+            { Debug.Log($"mouse delta {mouseWheelDelta}");
+                NotebookVisibilityPercent += notebookVisibilityScrollAmount * Mathf.Sign(mouseWheelDelta);
+            }
             //Mouse sensivity adjust
             if (Input.GetKeyDown(KeyCode.Minus))
             {
@@ -107,6 +130,8 @@ public class PlayerController : MonoBehaviour
             txtMessage.DeactivateInputField();
             eventSystem.SetSelectedGameObject(null);
             Cursor.lockState = CursorLockMode.Locked;
+            //put notebook in correct closed position
+            NotebookVisibilityPercent = notebookClosedPositionPercent;
         }
     }
 

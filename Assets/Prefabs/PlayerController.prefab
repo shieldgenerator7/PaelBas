@@ -195,11 +195,13 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  notebookVisibilityScrollAmount: 0.2
   characterController: {fileID: 4682557828360740298}
   camera: {fileID: 4682557829534656984}
   notebook: {fileID: 3015566053560452107}
   positionOpen: {fileID: 3052050484612210981}
   positionClosed: {fileID: 2313103046323075259}
+  positionClosedVisible: {fileID: 6774790994793732131}
   txtMessage: {fileID: 4682557828178090376}
   eventSystem: {fileID: 0}
   groundCheck: {fileID: 4682557828452184725}
@@ -293,6 +295,7 @@ Transform:
   - {fileID: 367380600756544968}
   - {fileID: 3052050484612210981}
   - {fileID: 2313103046323075259}
+  - {fileID: 6774790994793732131}
   m_Father: {fileID: 4682557828360740343}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -355,6 +358,37 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4682557829534656986}
   m_Enabled: 1
+--- !u!1 &8071790154939581888
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6774790994793732131}
+  m_Layer: 0
+  m_Name: pos closedVisible
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6774790994793732131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071790154939581888}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.2, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4682557829534656991}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3549497802583388724
 PrefabInstance:
   m_ObjectHideFlags: 0
