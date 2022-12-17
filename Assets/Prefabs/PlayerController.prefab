@@ -185,11 +185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d8c8779b613eff4dadf70bba3ce6788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
-  sprintMoveSpeed: 35
-  lookSpeed: 100
+  moveSpeed: 5
+  sprintMoveSpeed: 12
+  lookSpeed: 70
   lookSpeedIncrement: 10
-  jumpHeight: 3
+  jumpHeight: 2
   gravityY: -9.81
   groundDistance: 0.4
   groundMask:
