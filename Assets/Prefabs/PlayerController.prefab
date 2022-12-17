@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holder: {fileID: 4682557829534656991}
   playerController: {fileID: 4682557828360740299}
+  canHoldSprite: {fileID: 21300000, guid: c58ffdcb624409647949d27057294f62, type: 3}
+  heldSprite: {fileID: 21300000, guid: ea4c1841aec805247bfba796056873df, type: 3}
 --- !u!1 &2831067488226914383
 GameObject:
   m_ObjectHideFlags: 0

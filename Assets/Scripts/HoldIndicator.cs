@@ -7,6 +7,9 @@ public class HoldIndicator : MonoBehaviour
     public Transform holder;
     public PlayerController playerController;
 
+    public Sprite canHoldSprite;
+    public Sprite heldSprite;
+
     private SpriteRenderer sr;
 
     private void Start()
@@ -17,7 +20,12 @@ public class HoldIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sr.enabled = holdObjectFound();
+        bool show = playerController.Holding || holdObjectFound();
+        sr.enabled = show;
+        if (show)
+        {
+            sr.sprite = (playerController.Holding) ? heldSprite : canHoldSprite;
+        }
     }
 
     public bool holdObjectFound()

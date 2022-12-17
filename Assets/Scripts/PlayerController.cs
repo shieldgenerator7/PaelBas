@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
     private Transform heldObject;
     private Transform holdPrevParent;
+    public bool Holding => heldObject;
 
     private TMP_Text lblMessage;
 
