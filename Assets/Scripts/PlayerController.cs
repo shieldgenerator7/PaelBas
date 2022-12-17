@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
     }
 
     private Transform heldObject;
-    private Vector3 holdOffset;
     private Transform holdPrevParent;
 
     private TMP_Text lblMessage;
@@ -197,7 +196,6 @@ public class PlayerController : MonoBehaviour
             {
                 //drop it
                 heldObject.GetComponent<Rigidbody>().isKinematic = false;
-                holdOffset = Vector3.zero;
                 heldObject.parent = holdPrevParent;
                 holdPrevParent = null;
                 heldObject = null;
@@ -220,7 +218,6 @@ public class PlayerController : MonoBehaviour
                 if (heldObject)
                 {
                     heldObject.GetComponent<Rigidbody>().isKinematic = true;
-                    holdOffset = heldObject.position - transform.position;
                     holdPrevParent = heldObject.parent;
                     heldObject.parent = camera.transform;
                 }
@@ -229,7 +226,6 @@ public class PlayerController : MonoBehaviour
         //Move held object
         if (heldObject)
         {
-            heldObject.position = transform.position + holdOffset;
             //keep object right-side up
             Vector3 euler = heldObject.eulerAngles;
             heldObject.eulerAngles = new Vector3(0, euler.y, 0);
