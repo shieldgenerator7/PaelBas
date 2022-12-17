@@ -196,6 +196,7 @@ public class PlayerController : MonoBehaviour
                 //drop it
                 heldObject.GetComponent<Rigidbody>().isKinematic = false;
                 holdOffset = Vector3.zero;
+                heldObject = null;
             }
             else
             {
