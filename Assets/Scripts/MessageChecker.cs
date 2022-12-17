@@ -52,9 +52,15 @@ public class MessageChecker : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
+        //Make sure the player is the one triggering it
+        PlayerController pc = collision.transform.GetComponent<PlayerController>();
+        if (!pc)
+        {
+            return;
+        }
+        //Add message
         if (!MessagePuzzleManager.instance.hasMessage(message))
         {
-            PlayerController pc = FindObjectOfType<PlayerController>();
             if (pc.NotebookVisibilityPercent < 0.5f)
             {
                 pc.NotebookVisibilityPercent = 0.5f;
