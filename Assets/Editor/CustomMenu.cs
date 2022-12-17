@@ -230,12 +230,6 @@ public class CustomMenu
         }
     }
 
-    [MenuItem("SG7/Editor/Show or Hide All Colliders %&c")]
-    public static void showHideAllColliders()
-    {
-        Physics2D.alwaysShowColliders = !Physics2D.alwaysShowColliders;
-    }
-
     public static void ClearLog()
     {
         //2020-12-28: copied from https://stackoverflow.com/a/40578161/2336212
