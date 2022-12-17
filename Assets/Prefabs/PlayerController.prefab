@@ -98,7 +98,7 @@ Transform:
   - {fileID: 4682557829534656991}
   - {fileID: 4682557828452184725}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4682557828360740340
 MeshFilter:
@@ -472,6 +472,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 4682557829534656984}
+    - target: {fileID: 8194740406165667503, guid: 354e474042e276b4684c27f2b40d71ec,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 54.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8194740406178432719, guid: 354e474042e276b4684c27f2b40d71ec,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
