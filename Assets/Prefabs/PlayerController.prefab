@@ -196,6 +196,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   notebookVisibilityScrollAmount: 0.2
+  maxPickupDistance: 3
   characterController: {fileID: 4682557828360740298}
   camera: {fileID: 4682557829534656984}
   notebook: {fileID: 3015566053560452107}
