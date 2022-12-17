@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
             //Move notebook visibility
             float mouseWheelDelta = Input.mouseScrollDelta.y;
             if (mouseWheelDelta != 0)
-            { Debug.Log($"mouse delta {mouseWheelDelta}");
+            {
                 NotebookVisibilityPercent += notebookVisibilityScrollAmount * Mathf.Sign(mouseWheelDelta);
             }
             //Mouse sensivity adjust
