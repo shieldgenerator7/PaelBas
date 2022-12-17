@@ -1,0 +1,29 @@
+PaelBas
+
+== COGG ==
+
+make it more obvious when a note gets added to your notebook
+
+the notes need to be distinct from each other depending on who made it
+
+jump height is too high
+
+add in instructions that you actually need to follow
+
+add interactibles
+
+allow undoing initial edits before unobfuscators
+
+make the notes not auto-update while editing? or pause updating? some ppl like to read original note while editing in the notebook
+
+make it easier to move the notebook around
+
+instead of insta-unobfuscate, make buttons unobfuscate one word at a time
+
+
+== mixup ==
+
+do concept art for the environment
+
+add landmarks: trrehouse, benches, boxes
+
