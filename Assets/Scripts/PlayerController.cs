@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     [Tooltip("How much the scroll wheel changes the position percent of the notebook when closed")]
     public float notebookVisibilityScrollAmount = 0.1f;
+    public float maxPickupDistance = 3;
 
     [Header("Components")]
     public CharacterController characterController;
@@ -44,6 +45,9 @@ public class PlayerController : MonoBehaviour
                 + positionClosed.position;
         }
     }
+
+    private Transform heldObject;
+    private Vector3 holdOffset;
 
     private TMP_Text lblMessage;
 
@@ -111,6 +115,7 @@ public class PlayerController : MonoBehaviour
             lookSpeed = Mathf.Clamp(lookSpeed, 10, 200);
             //Move
             moveAndLook();
+            interact();
             jump();
         }
     }
@@ -178,6 +183,46 @@ public class PlayerController : MonoBehaviour
             rotationX -= mouseY * lookSpeed * Time.deltaTime;
             rotationX = Mathf.Clamp(rotationX, -90f, 90f);
             camera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        }
+    }
+
+    public void interact()
+    {
+        //Pick up or drop object
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (heldObject)
+            {
+                //drop it
+                heldObject.GetComponent<Rigidbody>().isKinematic = false;
+                holdOffset = Vector3.zero;
+            }
+            else
+            {
+                //Find object to hold
+                RaycastHit[] infos;
+                infos = Physics.RaycastAll(camera.transform.position, camera.transform.forward, maxPickupDistance);
+                for (int i = 0; i < infos.Length; i++)
+                {
+                    RaycastHit info = infos[i];
+                    if (info.transform.GetComponent<Interactible>())
+                    {
+                        heldObject = info.transform;
+                        break;
+                    }
+                }
+                //Hold it
+                if (heldObject)
+                {
+                    heldObject.GetComponent<Rigidbody>().isKinematic = true;
+                    holdOffset = heldObject.position - transform.position;
+                }
+            }
+        }
+        //Move held object
+        if (heldObject)
+        {
+            heldObject.position = transform.position + holdOffset;
         }
     }
 
