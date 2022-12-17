@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
     private Transform heldObject;
     private Vector3 holdOffset;
+    private Transform holdPrevParent;
 
     private TMP_Text lblMessage;
 
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
         };
         lblMessage = txtMessage.GetComponentInChildren<TMP_Text>();
         updateText();
+        NotebookVisibilityPercent = 0;//default
         ShowNotebook(showNotebook);
     }
 
@@ -196,6 +198,8 @@ public class PlayerController : MonoBehaviour
                 //drop it
                 heldObject.GetComponent<Rigidbody>().isKinematic = false;
                 holdOffset = Vector3.zero;
+                heldObject.parent = holdPrevParent;
+                holdPrevParent = null;
                 heldObject = null;
             }
             else
@@ -217,6 +221,8 @@ public class PlayerController : MonoBehaviour
                 {
                     heldObject.GetComponent<Rigidbody>().isKinematic = true;
                     holdOffset = heldObject.position - transform.position;
+                    holdPrevParent = heldObject.parent;
+                    heldObject.parent = camera.transform;
                 }
             }
         }
@@ -224,6 +230,9 @@ public class PlayerController : MonoBehaviour
         if (heldObject)
         {
             heldObject.position = transform.position + holdOffset;
+            //keep object right-side up
+            Vector3 euler = heldObject.eulerAngles;
+            heldObject.eulerAngles = new Vector3(0, euler.y, 0);
         }
     }
 
