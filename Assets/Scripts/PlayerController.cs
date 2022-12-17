@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
                 txtMessage.selectionFocusPosition = charIndex + 1;
             }
         }
-        if (Input.GetKeyUp(KeyCode.Tab))
+        if (Input.GetKeyUp(KeyCode.Tab) || (showNotebook && Input.GetKeyUp(KeyCode.Escape)))
         {
             showNotebook = !showNotebook;
             ShowNotebook(showNotebook);
