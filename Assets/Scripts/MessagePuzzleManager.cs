@@ -70,7 +70,7 @@ public class MessagePuzzleManager : MonoBehaviour
 
     public void addMessage(Message message)
     {
-        if (!messages.Contains(message))
+        if (!hasMessage(message))
         {
             messages.Add(message);
             onMessageAdded?.Invoke(data.getMessagePuzzle(message));
@@ -78,6 +78,8 @@ public class MessagePuzzleManager : MonoBehaviour
         MessageIndex = messages.IndexOf(message);
     }
     public OnMessagePuzzle onMessageAdded;
+
+    public bool hasMessage(Message message) => messages.Contains(message);
 
     public string getMessageText(Message message)
     {
