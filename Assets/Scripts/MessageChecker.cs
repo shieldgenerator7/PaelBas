@@ -53,5 +53,6 @@ public class MessageChecker : MonoBehaviour
     private void OnTriggerEnter(Collider collision)
     {
         MessagePuzzleManager.instance.addMessage(message);
+        FindObjectOfType<PlayerController>().ShowNotebook(true);
     }
 }

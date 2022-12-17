@@ -69,8 +69,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Tab) || (showNotebook && Input.GetKeyUp(KeyCode.Escape)))
         {
-            showNotebook = !showNotebook;
-            ShowNotebook(showNotebook);
+            ShowNotebook(!showNotebook);
         }
         //Gravity
         applyGravity();
@@ -95,6 +94,7 @@ public class PlayerController : MonoBehaviour
 
     public void ShowNotebook(bool show)
     {
+        showNotebook = show;
         notebook.transform.position = ((show) ? positionOpen : positionClosed).position;
         if (showNotebook)
         {
