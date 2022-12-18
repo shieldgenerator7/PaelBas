@@ -1426,6 +1426,106 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 261540284}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &263210143
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 886198126}
+    m_Modifications:
+    - target: {fileID: 5460461552246322761, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: message
+      value: 
+      objectReference: {fileID: 11400000, guid: 109a4e2933a1d9f48a0a4772ea6721f1,
+        type: 2}
+    - target: {fileID: 5464482959606295929, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_Name
+      value: Sticky Maze 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428122025107262650, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428122025107262650, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.746
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428122025107262650, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428122025107262650, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 262.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428122025107262650, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428122025107262650, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428122025107262650, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428122025107262650, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428122025107262650, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428122025107262650, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428122025107262650, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8754851274493332784, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_text
+      value: Thre is a shrtcut though th mae to Saly Le's hose beind th CAT sttue.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8754851274493332784, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 7.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8754851274493332784, guid: ec2ad86815019c345bb10c252b60d42f,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 7.9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ec2ad86815019c345bb10c252b60d42f, type: 3}
+--- !u!4 &263210144 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7428122025107262650, guid: ec2ad86815019c345bb10c252b60d42f,
+    type: 3}
+  m_PrefabInstance: {fileID: 263210143}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &317707535
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3031,6 +3131,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4896055774644182024, guid: 5cd357f607712644f8ef39d3544dbcd0,
+        type: 3}
+      propertyPath: message
+      value: 
+      objectReference: {fileID: 11400000, guid: f6855dd88fab0424d826a56a616482af,
+        type: 2}
     - target: {fileID: 6688605737861256380, guid: 5cd357f607712644f8ef39d3544dbcd0,
         type: 3}
       propertyPath: m_Name
@@ -3570,6 +3676,7 @@ Transform:
   - {fileID: 482160099}
   - {fileID: 887634245}
   - {fileID: 2056123492}
+  - {fileID: 263210144}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5532,6 +5639,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4896055774644182024, guid: 5cd357f607712644f8ef39d3544dbcd0,
+        type: 3}
+      propertyPath: message
+      value: 
+      objectReference: {fileID: 11400000, guid: 1285a6d033877394cb8f1eef12a18f32,
+        type: 2}
     - target: {fileID: 6688605737861256380, guid: 5cd357f607712644f8ef39d3544dbcd0,
         type: 3}
       propertyPath: m_Name
@@ -5700,6 +5813,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4896055774644182024, guid: 5cd357f607712644f8ef39d3544dbcd0,
+        type: 3}
+      propertyPath: message
+      value: 
+      objectReference: {fileID: 11400000, guid: 6fd3a0f208809ce45b19ec2242080284,
+        type: 2}
     - target: {fileID: 6688605737861256380, guid: 5cd357f607712644f8ef39d3544dbcd0,
         type: 3}
       propertyPath: m_Name
@@ -9835,10 +9954,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4896055774644182024, guid: 5cd357f607712644f8ef39d3544dbcd0,
+        type: 3}
+      propertyPath: message
+      value: 
+      objectReference: {fileID: 11400000, guid: 4390c7428bafb794895dbd1ad7b0c8fc,
+        type: 2}
     - target: {fileID: 6688605737861256380, guid: 5cd357f607712644f8ef39d3544dbcd0,
         type: 3}
       propertyPath: m_Name
       value: HedgeMazeSection
+      objectReference: {fileID: 0}
+    - target: {fileID: 8163415107673941873, guid: 5cd357f607712644f8ef39d3544dbcd0,
+        type: 3}
+      propertyPath: m_text
+      value: No! No beind th CA sttue, beind th CAT sttue!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
