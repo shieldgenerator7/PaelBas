@@ -204,23 +204,44 @@ public class PlayerController : MonoBehaviour
             else
             {
                 //Find object to hold
+                Interactible interactible = null;
                 RaycastHit[] infos;
                 infos = Physics.RaycastAll(camera.transform.position, camera.transform.forward, maxPickupDistance);
                 for (int i = 0; i < infos.Length; i++)
                 {
                     RaycastHit info = infos[i];
-                    if (info.transform.GetComponent<Interactible>())
+                    interactible = info.transform.GetComponent<Interactible>();
+                    if (interactible)
                     {
-                        heldObject = info.transform;
                         break;
                     }
                 }
-                //Hold it
-                if (heldObject)
+                //interact with it
+                if (interactible)
                 {
-                    heldObject.GetComponent<Rigidbody>().isKinematic = true;
-                    holdPrevParent = heldObject.parent;
-                    heldObject.parent = camera.transform;
+                    //Note it
+                    if (interactible.notable)
+                    {
+                        //Add message
+                        MessagePuzzleManager mpm = MessagePuzzleManager.instance;
+                        Message message = interactible.GetComponent<MessageChecker>().message;
+                        if (!mpm.hasMessage(message))
+                        {
+                            if (NotebookVisibilityPercent < 0.3f)
+                            {
+                                NotebookVisibilityPercent = 0.3f;
+                            }
+                        }
+                        mpm.addMessage(message);
+                    }
+                    //Hold it
+                    else if (interactible.holdable)
+                    {
+                        heldObject = interactible.transform;
+                        heldObject.GetComponent<Rigidbody>().isKinematic = true;
+                        holdPrevParent = heldObject.parent;
+                        heldObject.parent = camera.transform;
+                    }
                 }
             }
         }

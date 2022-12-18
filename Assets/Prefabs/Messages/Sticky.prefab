@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 4141040176616605265}
   - component: {fileID: 5813568948122128724}
   - component: {fileID: 5460461552246322761}
-  - component: {fileID: 6127371044739166597}
+  - component: {fileID: 1706019734077648620}
   m_Layer: 0
   m_Name: Sticky
   m_TagString: Untagged
@@ -206,27 +206,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   message: {fileID: 11400000, guid: 6b379829a9a817b449de4f9d596cdd60, type: 2}
   lblMessage: {fileID: 8754851274493332784}
---- !u!135 &6127371044739166597
-SphereCollider:
+--- !u!114 &1706019734077648620
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5464482959606295929}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 656d562d0df12aa4aad64c77b7e620f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdable: 0
+  notable: 1
 --- !u!1 &6988849247655620484
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class HoldIndicator : MonoBehaviour
 
     public Sprite canHoldSprite;
     public Sprite heldSprite;
+    public Sprite noteSprite;
 
     private SpriteRenderer sr;
 
@@ -20,15 +21,18 @@ public class HoldIndicator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool show = playerController.Holding || holdObjectFound();
+        Interactible interactible = holdObjectFound();
+        bool show = playerController.Holding || interactible;
         sr.enabled = show;
         if (show)
         {
-            sr.sprite = (playerController.Holding) ? heldSprite : canHoldSprite;
+            sr.sprite = (interactible.notable)
+                ? noteSprite
+                : (playerController.Holding) ? heldSprite : canHoldSprite;
         }
     }
 
-    public bool holdObjectFound()
+    public Interactible holdObjectFound()
     {
         //Find object to hold
         RaycastHit[] infos;
@@ -40,11 +44,12 @@ public class HoldIndicator : MonoBehaviour
         for (int i = 0; i < infos.Length; i++)
         {
             RaycastHit info = infos[i];
-            if (info.transform.GetComponent<Interactible>())
+            Interactible interactible = info.transform.GetComponent<Interactible>();
+            if (interactible)
             {
-                return true;
+                return interactible;
             }
         }
-        return false;
+        return null;
     }
 }

@@ -49,23 +49,4 @@ public class MessageChecker : MonoBehaviour
             MessagePuzzleManager.instance.onMessageSwitched -= registerSign;
         }
     }
-
-    private void OnTriggerEnter(Collider collision)
-    {
-        //Make sure the player is the one triggering it
-        PlayerController pc = collision.transform.GetComponent<PlayerController>();
-        if (!pc)
-        {
-            return;
-        }
-        //Add message
-        if (!MessagePuzzleManager.instance.hasMessage(message))
-        {
-            if (pc.NotebookVisibilityPercent < 0.5f)
-            {
-                pc.NotebookVisibilityPercent = 0.5f;
-            }
-        }
-        MessagePuzzleManager.instance.addMessage(message);
-    }
 }
