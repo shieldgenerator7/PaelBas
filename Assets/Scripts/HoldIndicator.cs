@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HoldIndicator : MonoBehaviour
 {
@@ -12,23 +13,36 @@ public class HoldIndicator : MonoBehaviour
     public Sprite noteSprite;
 
     private SpriteRenderer sr;
+    private Image image;
 
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        image = GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
         Interactible interactible = holdObjectFound();
-        bool show = playerController.Holding || interactible;
-        sr.enabled = show;
+        bool show = !playerController.Notebooking && 
+            (playerController.Holding || interactible);
+        Sprite sprite = null;
         if (show)
         {
-            sr.sprite = (interactible.notable)
+            sprite = (interactible.notable)
                 ? noteSprite
                 : (playerController.Holding) ? heldSprite : canHoldSprite;
+        }
+        if (sr)
+        {
+            sr.enabled = show; 
+            sr.sprite = sprite;
+        }
+        if (image)
+        {
+            image.enabled = show;
+            image.sprite = sprite;
         }
     }
 

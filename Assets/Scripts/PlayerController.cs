@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
 
     private bool showNotebook = false;
+    public bool Notebooking => showNotebook;
     private float notebookClosedPositionPercent = 0.0f;//0 = positionClosed; 1 = positionClosedVisible; (0.0-1.0) = position in between
     public float NotebookVisibilityPercent
     {
