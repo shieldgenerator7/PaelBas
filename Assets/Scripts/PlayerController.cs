@@ -225,14 +225,8 @@ public class PlayerController : MonoBehaviour
                         //Add message
                         MessagePuzzleManager mpm = MessagePuzzleManager.instance;
                         Message message = interactible.GetComponent<MessageChecker>().message;
-                        if (!mpm.hasMessage(message))
-                        {
-                            if (NotebookVisibilityPercent < 0.3f)
-                            {
-                                NotebookVisibilityPercent = 0.3f;
-                            }
-                        }
                         mpm.addMessage(message);
+                        ShowNotebook(true);
                     }
                     //Hold it
                     else if (interactible.holdable)
