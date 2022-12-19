@@ -316,6 +316,15 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Restore the selection of the txtMessage
+    /// </summary>
+    public void reselectText()
+    {
+        txtMessage.Select();
+        txtMessage.selectionAnchorPosition = SelectionStart;
+        txtMessage.selectionFocusPosition = SelectionEnd;
+    }
 
 
 }

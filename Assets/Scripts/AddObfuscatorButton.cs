@@ -9,5 +9,6 @@ public class AddObfuscatorButton : MonoBehaviour
     public void addObfuscator()
     {
         MessagePuzzleManager.instance.useObfuscator(obfuscator);
+        FindObjectOfType<PlayerController>().reselectText();
     }
 }
