@@ -2382,7 +2382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4453932b829574da0d6b0cefd8d201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxObfuscatorLayers: 3
   messages:
   - {fileID: 11400000, guid: 183f913eca393974c927655efaec54be, type: 2}
 --- !u!1001 &566519858

@@ -6,9 +6,6 @@ public class MessagePuzzleManager : MonoBehaviour
 {
     public static MessagePuzzleManager instance;
 
-    [Tooltip("The max amount of obfuscator levels per message")]
-    public int maxObfuscatorLayers = 3;
-
     public List<Message> messages = new List<Message>();
 
     private MessagePuzzleData data = new MessagePuzzleData();
