@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public TMP_InputField txtMessage;
     public EventSystem eventSystem;
     public Transform groundCheck;
+    public List<GameObject> hidableButtons;
 
     private bool showNotebook = false;
     public bool Notebooking => showNotebook;
@@ -129,6 +130,7 @@ public class PlayerController : MonoBehaviour
     {
         showNotebook = show;
         notebook.transform.position = ((show) ? positionOpen : positionClosed).position;
+        hidableButtons.ForEach(btn => btn.SetActive(show));
         if (showNotebook)
         {
             txtMessage.ActivateInputField();
