@@ -42,6 +42,11 @@ public class UndoStack
 
     public void recordState(string text, Obfuscator obfuscator = null)
     {
+        //Early exit: new text is same as current text
+        if (text == Text)
+        {
+            return;
+        }
         //Remove states that would be overwritten
         undoList.RemoveRange(index + 1, undoList.Count - 1 - index);
         //Create new state
