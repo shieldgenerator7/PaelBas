@@ -279,8 +279,41 @@ public class PlayerController : MonoBehaviour
         if (txtMessage.isFocused)
         {
             SelectionStart = Mathf.Min(pos1, pos2);
-            SelectionEnd = Mathf.Max(pos1 - 1, pos2 - 1);
             Debug.Log($"selectText: {str}, ({SelectionStart} - {SelectionEnd})/{txtMessage.text.Length}");
+            SelectionEnd = Mathf.Max(pos1, pos2) - 1;
+            //Magnet selection to whole words
+            if (SelectionStart != SelectionEnd)
+            {
+                int newStart = SelectionStart;
+                int newEnd = SelectionEnd;
+                for (int i = newStart; i >= 0; i--)
+                {
+                    if (!char.IsWhiteSpace(str[i]))
+                    {
+                        newStart = i;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                for (int i = newEnd; i < str.Length; i++)
+                {
+                    if (!char.IsWhiteSpace(str[i]))
+                    {
+                        newEnd = i;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                if (newStart != SelectionStart || newEnd != SelectionEnd)
+                {
+                    txtMessage.selectionAnchorPosition = (pos1 <= pos2) ? newStart : newEnd + 1;
+                    txtMessage.selectionFocusPosition = (pos1 <= pos2) ? newEnd + 1 : newStart;
+                }
+            }
         }
     }
 
