@@ -61,8 +61,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         MessagePuzzleManager.instance.onMessageSwitched += (msg) => updateText();
-        MessagePuzzleManager.instance.onObfuscatorPushed += (obf) => updateText();
-        MessagePuzzleManager.instance.onObfuscatorPopped += updateText;
+        MessagePuzzleManager.instance.onPuzzleStateChanged += updateText;
         txtMessage.onValidateInput += (txt, index, chr) =>
         {
             if (chr == '\t')

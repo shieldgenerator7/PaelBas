@@ -47,22 +47,24 @@ public class MessagePuzzleManager : MonoBehaviour
         MessageIndex = 0;
     }
 
-    public void pushObfuscator(Obfuscator obf)
+    public void useObfuscator(Obfuscator obf)
     {
         string unobfStr = obf.Unobfuscate(messagePuzzle.undoStack.Text);
         messagePuzzle.undoStack.recordState(unobfStr, obf);
-        onObfuscatorPushed?.Invoke(obf);
+        onPuzzleStateChanged?.Invoke();
     }
-    public delegate void ObfuscatorPushed(Obfuscator obf);
-    public ObfuscatorPushed onObfuscatorPushed;
-
-    public void popObfuscator()
+    public void undo()
     {
         messagePuzzle.undoStack.undo();
-        onObfuscatorPopped?.Invoke();
+        onPuzzleStateChanged?.Invoke();
     }
-    public delegate void ObfuscatorPopped();
-    public ObfuscatorPopped onObfuscatorPopped;
+    public void redo()
+    {
+        messagePuzzle.undoStack.redo();
+        onPuzzleStateChanged?.Invoke();
+    }
+    public delegate void PuzzleStateChanged();
+    public PuzzleStateChanged onPuzzleStateChanged;
 
     public void addMessage(Message message)
     {

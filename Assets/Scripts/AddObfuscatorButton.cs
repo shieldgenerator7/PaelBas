@@ -8,6 +8,6 @@ public class AddObfuscatorButton : MonoBehaviour
 
     public void addObfuscator()
     {
-        MessagePuzzleManager.instance.pushObfuscator(obfuscator);
+        MessagePuzzleManager.instance.useObfuscator(obfuscator);
     }
 }

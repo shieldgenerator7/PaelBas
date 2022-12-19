@@ -19,8 +19,7 @@ public class UIManager : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
         //Player delegates
-        MessagePuzzleManager.instance.onObfuscatorPushed += refreshList;
-        MessagePuzzleManager.instance.onObfuscatorPopped += refreshList;
+        MessagePuzzleManager.instance.onPuzzleStateChanged += refreshList;
         MessagePuzzleManager.instance.onMessageSwitched += switchMessage;
     }
 
