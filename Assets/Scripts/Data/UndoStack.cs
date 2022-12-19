@@ -69,6 +69,7 @@ public class UndoStack
 
     public List<Obfuscator> ObfuscatorList
         => undoList
+        .GetRange(0, index + 1)
         .ConvertAll(entry => entry.obfuscator)
         .FindAll(obf => obf)
         .Distinct().ToList();
