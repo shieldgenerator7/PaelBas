@@ -51,7 +51,12 @@ public class MessagePuzzleManager : MonoBehaviour
 
     public void useObfuscator(Obfuscator obf)
     {
-        string unobfStr = obf.Unobfuscate(messagePuzzle.undoStack.Text);
+        PlayerController pc = FindObjectOfType<PlayerController>();
+        string unobfStr = obf.Unobfuscate(
+            messagePuzzle.undoStack.Text,
+            pc.SelectionStart,
+            pc.SelectionEnd
+            );
         messagePuzzle.undoStack.recordState(unobfStr, obf);
         onMessagePuzzleStateChanged?.Invoke(messagePuzzle);
     }

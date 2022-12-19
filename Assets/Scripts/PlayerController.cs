@@ -47,6 +47,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public int SelectionStart { get; private set; }
+    public int SelectionEnd { get; private set; }
+
     private Transform heldObject;
     private Transform holdPrevParent;
     public bool Holding => heldObject;
@@ -71,6 +74,7 @@ public class PlayerController : MonoBehaviour
             return chr;
         };
         lblMessage = txtMessage.GetComponentInChildren<TMP_Text>();
+        txtMessage.onTextSelection.AddListener(selectText);
         updateText(MessagePuzzleManager.instance.MessagePuzzle);
         NotebookVisibilityPercent = 0;//default
         ShowNotebook(showNotebook);
@@ -267,6 +271,16 @@ public class PlayerController : MonoBehaviour
         {
             velocityY = Mathf.Sqrt(jumpHeight * -2f * gravityY);
             characterController.Move(Vector3.up * velocityY * Time.deltaTime);
+        }
+    }
+
+    public void selectText(string str, int pos1, int pos2)
+    {
+        if (txtMessage.isFocused)
+        {
+            SelectionStart = Mathf.Min(pos1, pos2);
+            SelectionEnd = Mathf.Max(pos1 - 1, pos2 - 1);
+            Debug.Log($"selectText: {str}, ({SelectionStart} - {SelectionEnd})/{txtMessage.text.Length}");
         }
     }
 

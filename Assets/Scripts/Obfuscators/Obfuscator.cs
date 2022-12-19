@@ -9,7 +9,7 @@ public abstract class Obfuscator : ScriptableObject
 
     public string ObfuscatedCharacterName
         => (!string.IsNullOrWhiteSpace(characterName))
-            ? Obfuscate(characterName) 
+            ? Obfuscate(characterName)
             : null;
 
     protected enum ObfuscationScope
@@ -95,14 +95,26 @@ public abstract class Obfuscator : ScriptableObject
 
     }
 
-    public string Unobfuscate(string message)
+    public string Unobfuscate(string message, int startIndex = 0, int endIndex = -1)
     {
+        //
+        if (startIndex < 0)
+        {
+            startIndex = 0;
+        }
+        if (endIndex < 0)
+        {
+            endIndex = message.Length - 1;
+        }
+        Debug.Log($"Unobfuscate: ({startIndex} - {endIndex})/{message.Length}");
+        string submessage = message.Substring(startIndex, endIndex - startIndex + 1);
+        //
         if (Scope == ObfuscationScope.MESSAGE)
         {
             //Obfuscate entire message
-            return unobfuscate(message);
+            return unobfuscate(submessage);
         }
-        string[] segments = getSegments(message);
+        string[] segments = getSegments(submessage);
         for (int iS = 0; iS < segments.Length; iS++)
         {
             string segment = segments[iS];
@@ -146,7 +158,13 @@ public abstract class Obfuscator : ScriptableObject
             }
             segments[iS] = setWords(words, segment);
         }
-        return setSegments(segments, message);
+        submessage = setSegments(segments, submessage);
+        string newmessage = message.Substring(0, startIndex) + submessage;
+        if (endIndex < message.Length - 1)
+        {
+            newmessage += message.Substring(endIndex + 1, message.Length - 1 - endIndex);
+        }
+        return newmessage;
 
     }
 
