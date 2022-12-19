@@ -19,7 +19,7 @@ public class MessageChecker : MonoBehaviour
         MessagePuzzle mp = MessagePuzzleManager.instance.getMessagePuzzle(message);
         if (mp != null)
         {
-            mp.sleuthTree.onSolutionChanged += updateSign;
+            mp.undoStack.onUndoStateChanged += updateSign;
         }
         else
         {
@@ -32,7 +32,7 @@ public class MessageChecker : MonoBehaviour
         MessagePuzzle mp = MessagePuzzleManager.instance.getMessagePuzzle(message);
         if (mp != null)
         {
-            mp.sleuthTree.onSolutionChanged -= updateSign;
+            mp.undoStack.onUndoStateChanged -= updateSign;
         }
         MessagePuzzleManager.instance.onMessageSwitched -= registerSign;
     }
@@ -45,7 +45,7 @@ public class MessageChecker : MonoBehaviour
     {
         if (mp.message == this.message)
         {
-            mp.sleuthTree.onSolutionChanged += updateSign;
+            mp.undoStack.onUndoStateChanged += updateSign;
             MessagePuzzleManager.instance.onMessageSwitched -= registerSign;
         }
     }

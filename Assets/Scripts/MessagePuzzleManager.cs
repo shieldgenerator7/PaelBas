@@ -37,8 +37,8 @@ public class MessagePuzzleManager : MonoBehaviour
 
     public string Text
     {
-        get => messagePuzzle.sleuthTree.Text;
-        set => messagePuzzle.sleuthTree.saveText(value);
+        get => messagePuzzle.undoStack.Text;
+        set => messagePuzzle.undoStack.recordState(value);
     }
 
     // Start is called before the first frame update
@@ -51,18 +51,16 @@ public class MessagePuzzleManager : MonoBehaviour
 
     public void pushObfuscator(Obfuscator obf)
     {
-        if (messagePuzzle.sleuthTree.LayerCount < maxObfuscatorLayers)
-        {
-            messagePuzzle.sleuthTree.pushObfuscator(obf);
-            onObfuscatorPushed?.Invoke(obf);
-        }
+        string unobfStr = obf.Unobfuscate(messagePuzzle.undoStack.Text);
+        messagePuzzle.undoStack.recordState(unobfStr, obf);
+        onObfuscatorPushed?.Invoke(obf);
     }
     public delegate void ObfuscatorPushed(Obfuscator obf);
     public ObfuscatorPushed onObfuscatorPushed;
 
     public void popObfuscator()
     {
-        messagePuzzle.sleuthTree.popObfuscator();
+        messagePuzzle.undoStack.undo();
         onObfuscatorPopped?.Invoke();
     }
     public delegate void ObfuscatorPopped();
@@ -83,7 +81,7 @@ public class MessagePuzzleManager : MonoBehaviour
 
     public string getMessageText(Message message)
     {
-        return data.getMessagePuzzle(message).sleuthTree.Text;
+        return data.getMessagePuzzle(message).undoStack.Text;
     }
     public MessagePuzzle getMessagePuzzle(Message message)
     {

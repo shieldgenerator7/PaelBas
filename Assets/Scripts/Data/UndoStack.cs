@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UndoStack
@@ -13,11 +14,11 @@ public class UndoStack
         set
         {
             index = Mathf.Clamp(value, 0, undoList.Count - 1);
-            undoStateChanged?.Invoke();
+            onUndoStateChanged?.Invoke(Text);
         }
     }
-    public delegate void UndoStateChanged();
-    public event UndoStateChanged undoStateChanged;
+    public delegate void OnUndoStateChanged(string state);
+    public event OnUndoStateChanged onUndoStateChanged;
 
     public UndoStack(string startText)
     {
@@ -58,4 +59,12 @@ public class UndoStack
     {
         CurrentIndex = 0;
     }
+
+    public string Text => undoList[index].text;
+
+    public List<Obfuscator> ObfuscatorList
+        => undoList
+        .ConvertAll(entry => entry.obfuscator)
+        .FindAll(obf => obf)
+        .Distinct().ToList();
 }

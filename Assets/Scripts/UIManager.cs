@@ -83,7 +83,7 @@ public class UIManager : MonoBehaviour
 
     private void switchMessage(MessagePuzzle mp)
     {
-        names = mp.sleuthTree.ObfuscatorTrail
+        names = mp.undoStack.ObfuscatorList
             .ConvertAll(obf => getObfuscatorName(obf));
         refresh();
     }

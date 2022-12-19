@@ -5,11 +5,11 @@ using UnityEngine;
 public class MessagePuzzle
 {
     public Message message;
-    public SleuthTree sleuthTree;
+    public UndoStack undoStack;
 
     public MessagePuzzle(Message message)
     {
         this.message = message;
-        this.sleuthTree = new SleuthTree(message.Untext);
+        this.undoStack = new UndoStack(message.Untext);
     }
 }
