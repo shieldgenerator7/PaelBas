@@ -19,8 +19,8 @@ public class UIManager : MonoBehaviour
     {
         canvas = GetComponent<Canvas>();
         //Player delegates
-        MessagePuzzleManager.instance.onObfuscatorPushed += pushObfuscator;
-        MessagePuzzleManager.instance.onObfuscatorPopped += popObfuscator;
+        MessagePuzzleManager.instance.onObfuscatorPushed += refreshList;
+        MessagePuzzleManager.instance.onObfuscatorPopped += refreshList;
         MessagePuzzleManager.instance.onMessageSwitched += switchMessage;
     }
 
@@ -76,6 +76,17 @@ public class UIManager : MonoBehaviour
     private void popObfuscator()
     {
         pop();
+    }
+
+    private void refreshList()
+    {
+        refreshList(null);
+    }
+
+    private void refreshList(Obfuscator obf)
+    {
+        MessagePuzzle mp = MessagePuzzleManager.instance.MessagePuzzle;
+        switchMessage(mp);
     }
 
     private string getObfuscatorName(Obfuscator obf)

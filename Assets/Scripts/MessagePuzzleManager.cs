@@ -15,6 +15,7 @@ public class MessagePuzzleManager : MonoBehaviour
 
     private int messageIndex = -1;
     private MessagePuzzle messagePuzzle;
+    public MessagePuzzle MessagePuzzle => messagePuzzle;
 
     public int MessageIndex
     {
