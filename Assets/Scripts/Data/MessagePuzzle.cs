@@ -12,4 +12,6 @@ public class MessagePuzzle
         this.message = message;
         this.undoStack = new UndoStack(message.Untext);
     }
+
+    public string Text => undoStack.Text;
 }

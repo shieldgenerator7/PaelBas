@@ -18,9 +18,9 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         canvas = GetComponent<Canvas>();
-        //Player delegates
-        MessagePuzzleManager.instance.onPuzzleStateChanged += refreshList;
-        MessagePuzzleManager.instance.onMessageSwitched += switchMessage;
+        //MessagePuzzleManager delegates
+        MessagePuzzleManager.instance.onMessagePuzzleStateChanged += refreshObfuscatorList;
+        MessagePuzzleManager.instance.onMessagePuzzleSwitched += refreshObfuscatorList;
     }
 
     private void refresh()
@@ -52,21 +52,10 @@ public class UIManager : MonoBehaviour
         refresh();
     }
 
-    private void refreshList()
-    {
-        refreshList(null);
-    }
-
-    private void refreshList(Obfuscator obf)
-    {
-        MessagePuzzle mp = MessagePuzzleManager.instance.MessagePuzzle;
-        switchMessage(mp);
-    }
-
     private string getObfuscatorName(Obfuscator obf)
         => obf.ObfuscatedCharacterName ?? obf.GetType().Name;
 
-    private void switchMessage(MessagePuzzle mp)
+    private void refreshObfuscatorList(MessagePuzzle mp)
     {
         names = mp.undoStack.ObfuscatorList
             .ConvertAll(obf => getObfuscatorName(obf));

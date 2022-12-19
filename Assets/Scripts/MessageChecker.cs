@@ -23,7 +23,7 @@ public class MessageChecker : MonoBehaviour
         }
         else
         {
-            MessagePuzzleManager.instance.onMessageSwitched += registerSign;
+            MessagePuzzleManager.instance.onMessagePuzzleSwitched += registerSign;
         }
     }
 
@@ -34,7 +34,7 @@ public class MessageChecker : MonoBehaviour
         {
             mp.undoStack.onUndoStateChanged -= updateSign;
         }
-        MessagePuzzleManager.instance.onMessageSwitched -= registerSign;
+        MessagePuzzleManager.instance.onMessagePuzzleSwitched -= registerSign;
     }
 
     private void updateSign(string text)
@@ -46,7 +46,7 @@ public class MessageChecker : MonoBehaviour
         if (mp.message == this.message)
         {
             mp.undoStack.onUndoStateChanged += updateSign;
-            MessagePuzzleManager.instance.onMessageSwitched -= registerSign;
+            MessagePuzzleManager.instance.onMessagePuzzleSwitched -= registerSign;
         }
     }
 }

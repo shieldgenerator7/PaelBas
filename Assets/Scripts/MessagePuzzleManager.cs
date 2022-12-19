@@ -27,11 +27,13 @@ public class MessagePuzzleManager : MonoBehaviour
             //Switch to new message
             messageIndex = Mathf.Clamp(value, 0, messages.Count - 1);
             messagePuzzle = data.getMessagePuzzle(messages[messageIndex]);
-            onMessageSwitched?.Invoke(messagePuzzle);
+            onMessagePuzzleSwitched?.Invoke(messagePuzzle);
         }
     }
-    public delegate void OnMessagePuzzle(MessagePuzzle m);
-    public OnMessagePuzzle onMessageSwitched;
+
+    public delegate void MessagePuzzleDelegate(MessagePuzzle m);
+    public MessagePuzzleDelegate onMessagePuzzleSwitched;
+    public MessagePuzzleDelegate onMessagePuzzleStateChanged;
 
     public string Text
     {
@@ -51,20 +53,18 @@ public class MessagePuzzleManager : MonoBehaviour
     {
         string unobfStr = obf.Unobfuscate(messagePuzzle.undoStack.Text);
         messagePuzzle.undoStack.recordState(unobfStr, obf);
-        onPuzzleStateChanged?.Invoke();
+        onMessagePuzzleStateChanged?.Invoke(messagePuzzle);
     }
     public void undo()
     {
         messagePuzzle.undoStack.undo();
-        onPuzzleStateChanged?.Invoke();
+        onMessagePuzzleStateChanged?.Invoke(messagePuzzle);
     }
     public void redo()
     {
         messagePuzzle.undoStack.redo();
-        onPuzzleStateChanged?.Invoke();
+        onMessagePuzzleStateChanged?.Invoke(messagePuzzle);
     }
-    public delegate void PuzzleStateChanged();
-    public PuzzleStateChanged onPuzzleStateChanged;
 
     public void addMessage(Message message)
     {
@@ -75,7 +75,7 @@ public class MessagePuzzleManager : MonoBehaviour
         }
         MessageIndex = messages.IndexOf(message);
     }
-    public OnMessagePuzzle onMessageAdded;
+    public MessagePuzzleDelegate onMessageAdded;
 
     public bool hasMessage(Message message) => messages.Contains(message);
 

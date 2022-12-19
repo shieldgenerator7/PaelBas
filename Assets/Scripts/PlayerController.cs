@@ -60,8 +60,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MessagePuzzleManager.instance.onMessageSwitched += (msg) => updateText();
-        MessagePuzzleManager.instance.onPuzzleStateChanged += updateText;
+        MessagePuzzleManager.instance.onMessagePuzzleSwitched += updateText;
+        MessagePuzzleManager.instance.onMessagePuzzleStateChanged += updateText;
         txtMessage.onValidateInput += (txt, index, chr) =>
         {
             if (chr == '\t')
@@ -71,7 +71,7 @@ public class PlayerController : MonoBehaviour
             return chr;
         };
         lblMessage = txtMessage.GetComponentInChildren<TMP_Text>();
-        updateText();
+        updateText(MessagePuzzleManager.instance.MessagePuzzle);
         NotebookVisibilityPercent = 0;//default
         ShowNotebook(showNotebook);
     }
@@ -151,9 +151,9 @@ public class PlayerController : MonoBehaviour
     {
         MessagePuzzleManager.instance.Text = text;
     }
-    public void updateText()
+    public void updateText(MessagePuzzle messagePuzzle)
     {
-        txtMessage.text = MessagePuzzleManager.instance.Text;
+        txtMessage.text = messagePuzzle.Text;
     }
 
     public void moveAndLook()
