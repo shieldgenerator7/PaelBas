@@ -106,7 +106,6 @@ public abstract class Obfuscator : ScriptableObject
         {
             endIndex = message.Length - 1;
         }
-        Debug.Log($"Unobfuscate: ({startIndex} - {endIndex})/{message.Length}");
         string submessage = message.Substring(startIndex, endIndex - startIndex + 1);
         //
         if (Scope == ObfuscationScope.MESSAGE)

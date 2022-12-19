@@ -39,7 +39,6 @@ public class PlayerController : MonoBehaviour
         set
         {
             notebookClosedPositionPercent = Mathf.Clamp(value, 0.0f, 1.0f);
-            Debug.Log($"notebookClosedPositionPercent {notebookClosedPositionPercent}");
             notebook.transform.position =
                 (positionClosedVisible.position - positionClosed.position)
                 * notebookClosedPositionPercent
@@ -279,7 +278,6 @@ public class PlayerController : MonoBehaviour
         if (txtMessage.isFocused)
         {
             SelectionStart = Mathf.Min(pos1, pos2);
-            Debug.Log($"selectText: {str}, ({SelectionStart} - {SelectionEnd})/{txtMessage.text.Length}");
             SelectionEnd = Mathf.Max(pos1, pos2) - 1;
             //Magnet selection to whole words
             if (SelectionStart != SelectionEnd)
