@@ -23,21 +23,6 @@ public class UIManager : MonoBehaviour
         MessagePuzzleManager.instance.onMessageSwitched += switchMessage;
     }
 
-    public void push(string name)
-    {
-        names.Add(name);
-        refresh();
-    }
-
-    public void pop()
-    {
-        if (names.Count > 0)
-        {
-            names.RemoveAt(names.Count - 1);
-        }
-        refresh();
-    }
-
     private void refresh()
     {
         //Destroy old UI components
@@ -65,16 +50,6 @@ public class UIManager : MonoBehaviour
     {
         names = new List<string>();
         refresh();
-    }
-
-    private void pushObfuscator(Obfuscator obf)
-    {
-        push(getObfuscatorName(obf));
-    }
-
-    private void popObfuscator()
-    {
-        pop();
     }
 
     private void refreshList()
